@@ -31,18 +31,6 @@ public class Publicacao {
     private Categoria categoria;
 
 
-    public Publicacao(String texto, Date dataPublicacao, boolean verificacao, Usuario usuario, Categoria categoria) {
-        this.texto = texto;
-        this.dataPublicacao = dataPublicacao;
-        this.verificacao = verificacao;
-        this.usuario = usuario;
-        this.categoria = categoria;
-    }
-
-    public Publicacao() {
-
-    }
-
     public Integer getId() {
         return id;
     }
