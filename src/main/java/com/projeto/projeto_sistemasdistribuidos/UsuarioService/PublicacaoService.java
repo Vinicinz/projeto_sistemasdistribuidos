@@ -1,7 +1,6 @@
 package com.projeto.projeto_sistemasdistribuidos.UsuarioService;
 
 import com.projeto.projeto_sistemasdistribuidos.model.Publicacao;
-import com.projeto.projeto_sistemasdistribuidos.model.Usuario;
 import com.projeto.projeto_sistemasdistribuidos.repository.PublicacaoRepository;
 import org.springframework.stereotype.Service;
 
