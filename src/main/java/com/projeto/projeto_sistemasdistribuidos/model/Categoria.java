@@ -10,7 +10,7 @@ public class Categoria {
     @GeneratedValue
     @Column(name = "CAT_INT_ID")
     private int id;
-    @Column(name = "CAT_STR_TIPO")
+    @Column(name = "CAT_STR_DESC")
     private String tipo;
 
     public Categoria(int id, String tipo) {

@@ -16,7 +16,7 @@ public class Publicacao {
     @Column(name = "PUB_STR_TXT")
     private String texto;
 
-    @Column(name = "PUB_DATE_PUBDATA")
+    @Column(name = "PUB_DAT_DATAPUBLI")
     private Date dataPublicacao;
 
     @Column(name = "PUB_BOO_VERIF")
