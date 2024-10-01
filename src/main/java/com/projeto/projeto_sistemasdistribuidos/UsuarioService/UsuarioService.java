@@ -1,6 +1,6 @@
 package com.projeto.projeto_sistemasdistribuidos.UsuarioService;
 
-import com.projeto.projeto_sistemasdistribuidos.repository.IUsuario;
+import com.projeto.projeto_sistemasdistribuidos.repository.UsuarioRepository;
 import com.projeto.projeto_sistemasdistribuidos.model.Usuario;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -8,9 +8,9 @@ import java.util.List;
 @Service
 public class UsuarioService {
 
-    private IUsuario repository;
+    private UsuarioRepository repository;
 
-    public UsuarioService(IUsuario repository) {
+    public UsuarioService(UsuarioRepository repository) {
         this.repository = repository;
 
     }
