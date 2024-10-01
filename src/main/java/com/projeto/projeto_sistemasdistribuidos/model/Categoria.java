@@ -7,9 +7,10 @@ import jakarta.persistence.*;
 public class Categoria {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "CAT_INT_ID")
     private int id;
+
     @Column(name = "CAT_STR_DESC")
     private String tipo;
 
