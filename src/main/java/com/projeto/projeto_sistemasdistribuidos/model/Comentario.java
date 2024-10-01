@@ -15,11 +15,11 @@ public class Comentario {
     private String desc;
 
     @ManyToOne
-    @JoinColumn (name = "USUARIO_USU_INT_ID", referencedColumnName = "USU_INT_ID")
+    @JoinColumn (name = "USU_INT_ID", referencedColumnName = "USU_INT_ID")
     private Usuario usuario;
 
     @ManyToOne
-    @JoinColumn (name = "PUBLICACAO_PUB_INT_ID", referencedColumnName = "PUB_INT_ID")
+    @JoinColumn (name = "PUB_INT_ID", referencedColumnName = "PUB_INT_ID")
     private Publicacao publicacao;
 
     public Comentario(int id, String desc){
@@ -46,21 +46,5 @@ public class Comentario {
 
     public void setDesc(String desc) {
         this.desc = desc;
-    }
-
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
-
-    public Publicacao getPublicacao() {
-        return publicacao;
-    }
-
-    public void setPublicacao(Publicacao publicacao) {
-        this.publicacao = publicacao;
     }
 }
