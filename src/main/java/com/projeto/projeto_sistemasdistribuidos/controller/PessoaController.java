@@ -1,11 +1,11 @@
 package com.projeto.projeto_sistemasdistribuidos.controller;
 
+import com.projeto.projeto_sistemasdistribuidos.UsuarioService.PessoaService;
 import com.projeto.projeto_sistemasdistribuidos.model.Pessoa;
 import com.projeto.projeto_sistemasdistribuidos.repository.PessoaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -13,12 +13,30 @@ import java.util.List;
 @RequestMapping("/pessoa")
 public class PessoaController {
 
-    @Autowired
-    private PessoaRepository repository;
+    private PessoaService service;
+
+    public PessoaController(PessoaService service) {
+        this.service = service;
+    }
 
     @GetMapping
-    public List<Pessoa> listar() {
-        return (List<Pessoa>) repository.findAll();
+    public ResponseEntity<List<Pessoa>> listarPessoas() {
+        return ResponseEntity.status(200).body(service.listarPessoa());
+    }
+
+    @PostMapping
+    public ResponseEntity<Pessoa> criarPessoa(@RequestBody Pessoa pessoa) {
+        return ResponseEntity.status(201).body(service.criarPessoa(pessoa));
+    }
+    @PutMapping
+    public ResponseEntity<Pessoa> editarPessoa(@RequestBody Pessoa pessoa) {
+        return ResponseEntity.status(200).body(service.editarPessoa(pessoa));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> excluirPessoa(@PathVariable Integer id) {
+        service.excluirPessoa(id);
+        return ResponseEntity.status(204).build();
     }
 
 }
