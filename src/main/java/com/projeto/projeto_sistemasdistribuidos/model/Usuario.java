@@ -17,6 +17,9 @@ public class Usuario {
     @Column (name = "USU_STR_SENHA")
     private String senha;
 
+    @Column (name = "USU_STR_NICK")
+    private String nick;
+
     public Integer getId() {
         return id;
     }
@@ -37,7 +40,12 @@ public class Usuario {
         return senha;
     }
 
+    public String getNick() {return nick;}
+
+    public String setNick(String nick) {this.nick = nick; return nick; }
+
     public void setSenha(String senha) {
         this.senha = senha;
     }
+
 }
