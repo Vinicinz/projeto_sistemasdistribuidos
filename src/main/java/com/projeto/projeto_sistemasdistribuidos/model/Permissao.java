@@ -11,7 +11,7 @@ public class Permissao {
     @Column(name = "PER_INT_ID")
     private int id;
 
-    @Column(name = "PER_INT_NVACESSO")
+    @Column(name = "PER_INT_NVLACESSO")
     private int nivelAcesso;
 
     @ManyToOne
