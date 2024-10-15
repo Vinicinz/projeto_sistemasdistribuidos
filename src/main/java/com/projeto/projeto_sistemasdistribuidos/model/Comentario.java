@@ -22,16 +22,6 @@ public class Comentario {
     @JoinColumn (name = "PUB_INT_ID", referencedColumnName = "PUB_INT_ID")
     private Publicacao publicacao;
 
-    public Comentario(int id, String desc){
-        
-        this.id = id;
-        this.desc = desc;
-    }
-
-    public Comentario(){
-    
-    }
-
     public int getId() {
         return id;
     }

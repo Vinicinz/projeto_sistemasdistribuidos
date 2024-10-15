@@ -14,15 +14,6 @@ public class Categoria {
     @Column(name = "CAT_STR_DESC")
     private String tipo;
 
-    public Categoria(int id, String tipo) {
-        this.id = id;
-        this.tipo = tipo;
-    }
-
-    public Categoria() {
-
-    }
-
     public int getId() {
         return id;
     }

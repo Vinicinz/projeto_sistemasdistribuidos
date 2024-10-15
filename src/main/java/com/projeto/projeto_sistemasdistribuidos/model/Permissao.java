@@ -18,27 +18,15 @@ public class Permissao {
     @JoinColumn(name = "USU_INT_ID", referencedColumnName = "USU_INT_ID")
     private Usuario usuario;
 
-    public int getId() {
-        return id;
-    }
+    public int getId() {return id;}
 
-    public void setId(int id) {
-        this.id = id;
-    }
+    public void setId(int id) {this.id = id;}
 
-    public int getNivelAcesso() {
-        return nivelAcesso;
-    }
+    public int getNivelAcesso() {return nivelAcesso;}
 
-    public void setNivelAcesso(int nivelAcesso) {
-        this.nivelAcesso = nivelAcesso;
-    }
+    public void setNivelAcesso(int nivelAcesso) {this.nivelAcesso = nivelAcesso;}
 
-    public Usuario getUsuario() {
-        return usuario;
-    }
+    public Usuario getUsuario() {return usuario;}
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
+    public void setUsuario(Usuario usuario) {this.usuario = usuario;}
 }

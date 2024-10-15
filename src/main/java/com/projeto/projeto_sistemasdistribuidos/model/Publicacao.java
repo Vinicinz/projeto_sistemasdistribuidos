@@ -22,6 +22,9 @@ public class Publicacao {
     @Column(name = "PUB_BOO_VERIF")
     private boolean verificacao;
 
+    @Column(name = "PUB_BOO_TITULO")
+    private boolean titulo;
+
     @ManyToOne
     @JoinColumn(name = "USU_INT_ID", referencedColumnName = "USU_INT_ID")
     private Usuario usuario;
@@ -78,4 +81,8 @@ public class Publicacao {
     public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
     }
+
+    public boolean isTitulo() {return titulo;}
+
+    public void setTitulo(boolean titulo) {this.titulo = titulo;    }
 }
