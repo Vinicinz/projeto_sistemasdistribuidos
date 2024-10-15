@@ -22,14 +22,6 @@ public class Avaliacao{
     @JoinColumn (name = "COM_INT_ID", referencedColumnName = "COM_INT_ID")
     private Comentario comentario;
 
-    public Avaliacao(int id, int react) {
-        
-        this.id = id;
-        this.react = react;
-    }
-
-    public Avaliacao(){}
-
     public int getId(){
         return id;
     }
