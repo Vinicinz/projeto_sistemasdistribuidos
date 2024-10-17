@@ -4,10 +4,13 @@ import com.projeto.projeto_sistemasdistribuidos.UsuarioService.PublicacaoService
 import com.projeto.projeto_sistemasdistribuidos.model.Publicacao;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+
 
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:8080")
 @RequestMapping("/publicacao")
 public class PublicacaoController {
 
@@ -17,6 +20,7 @@ public class PublicacaoController {
         this.service = service;
     }
 
+    @CrossOrigin(origins = "http://localhost:8080")
     @GetMapping
     public ResponseEntity<List<Publicacao>> listarPublicacao() {
         return ResponseEntity.status(200).body(service.listarPublicacao());
