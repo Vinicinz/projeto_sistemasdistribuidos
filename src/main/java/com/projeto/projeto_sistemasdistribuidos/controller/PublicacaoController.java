@@ -25,6 +25,15 @@ public class PublicacaoController {
     public ResponseEntity<List<Publicacao>> listarPublicacao() {
         return ResponseEntity.status(200).body(service.listarPublicacao());
     }
+    @GetMapping("/{id}")
+    public ResponseEntity<Publicacao> buscarPublicacao(@PathVariable int id) {
+        Publicacao publicacao = service.getPublicacaoById(id);
+        if (publicacao != null) {
+            return ResponseEntity.status(200).body(publicacao);
+        } else {
+            return ResponseEntity.status(404).build();
+        }
+    }
 
     @PostMapping
     public ResponseEntity<Publicacao> criarPublicacao(@RequestBody Publicacao publicacao) {
@@ -41,5 +50,6 @@ public class PublicacaoController {
         service.excluirPublicacao(id);
         return ResponseEntity.status(204).build();
     }
+
 
 }
