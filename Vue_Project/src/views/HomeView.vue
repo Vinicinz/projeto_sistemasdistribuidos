@@ -1,6 +1,7 @@
 <template>
   <div class="greetings">
-      <div class="public" v-for="publicacao in publicacoes" :key="publicacao.id">
+      <div class="public" v-for="publicacao in publicacoes" :key="publicacao.id">~
+        <router-link :to="`/artigo/${publicacao.id}`">
           {{ publicacao.titulo }} - {{ new Date(publicacao.dataPublicacao).toLocaleDateString() }}
           {{ publicacao.verificacao }}
           <br>
@@ -8,6 +9,8 @@
           <br>
           {{ publicacao.texto }}
           <br>
+        </router-link>
+
       </div>
   </div>
 </template>
