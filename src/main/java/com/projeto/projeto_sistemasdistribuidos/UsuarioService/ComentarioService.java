@@ -34,4 +34,8 @@ public class ComentarioService {
         return true;
     }
 
+    public List<Comentario> buscarComentarioPorId(Integer publicacaoId){
+        return repository.findByPublicacaoId(publicacaoId);
+    }
+
 }
