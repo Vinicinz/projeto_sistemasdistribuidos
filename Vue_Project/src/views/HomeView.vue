@@ -2,13 +2,14 @@
   <div class="greetings">
       <div class="public" v-for="publicacao in publicacoes" :key="publicacao.id">~
         <router-link :to="`/artigo/${publicacao.id}`">
-          {{ publicacao.titulo }} - {{ new Date(publicacao.dataPublicacao).toLocaleDateString() }}
+          {{ publicacao.titulo }}
           {{ publicacao.verificacao }}
           <br>
           {{ publicacao.usuario.nick }}
           <br>
           {{ publicacao.texto }}
           <br>
+          {{ new Date(publicacao.dataPublicacao).toLocaleDateString() }}
         </router-link>
 
       </div>
@@ -40,5 +41,12 @@ export default {
   border: solid black 2px;
   margin: 10px;
   padding: 10px;
+  font-size: 20px;
+
+
+}
+.public a {
+  text-decoration: none;
+  color: inherit; 
 }
 </style>
