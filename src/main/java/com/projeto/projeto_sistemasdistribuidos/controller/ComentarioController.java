@@ -25,8 +25,7 @@ public class ComentarioController {
 
     @GetMapping("/{publicacaoId}")
     public ResponseEntity<List<Comentario>> buscarComentario(@PathVariable Integer publicacaoId){
-        List<Comentario> comentario = service.buscarComentarioPorId(publicacaoId);
-        return ResponseEntity.status(200).body(comentario);
+        return ResponseEntity.status(200).body(service.buscarComentarioPorId(publicacaoId));
 
     }
 
