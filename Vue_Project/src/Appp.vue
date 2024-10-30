@@ -1,3 +1,4 @@
+
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
 </script>
@@ -7,6 +8,9 @@ import { RouterLink, RouterView } from 'vue-router'
     <div class="wrapper">
       <nav>
         <RouterLink to="/">Home</RouterLink>
+       <RouterLink to="/login">Login</RouterLink> 
+        <RouterLink>Dashboard</RouterLink>
+        <RouterLink :to="{name: 'artigo', params: { id:123 }}">Pubs com comentarios</RouterLink>
       </nav>
     </div>
   </header>
@@ -21,4 +25,8 @@ export default {
     HomeView
   }
 };
+
+
 </script>
+
+
