@@ -8,42 +8,46 @@
         {{ comentario.desc }} - <strong>{{ comentario.usuario.nick }}</strong>
       </li>
     </ul>
+
+    <h3>Adicionar Comentário</h3>
+    <form @submit.prevent="enviarComentario">
+      <textarea v-model="novoComentario.desc" required></textarea>
+      <button type="submit">Enviar</button>
+    </form>
+
+
   </div>
 </template>
 
 <script>
-import ArtigosService from '@/services/artigos.service.js';
-
 export default {
-  props: {
-    id: {
-      type:[Number, String]
-    }
-  },
   data() {
     return {
-      publicacao: [],
-      comentarios: []
+      publicacao: {},
+      comentarios: [],
+      novoComentario: {
+        desc: '',
+        usuario: {
+          id: '5'
+        }
+      }
     };
   },
   mounted() {
     const publicacaoId = this.$route.params.id;
-    ArtigosService.getArtigo(publicacaoId).then(
-      response => {
-        console.log(response.data)
-      },
-      error => {
-        console.error(error.response.data)
-      }
-    )
+
+    fetch(`http://localhost:8080/publicacao/${publicacaoId}`)
+      .then(response => response.json())
+      .then(data => {
+        this.publicacao = data;
+      });
 
     fetch(`http://localhost:8080/comentario/${publicacaoId}`)
       .then(response => response.json())
       .then(data => {
         this.comentarios = data;
       });
-    }}
-
+  },
   methods: {
     enviarComentario() {
       const publicacaoId = this.$route.params.id;
@@ -67,7 +71,8 @@ export default {
         })
         .catch(error => {
           console.error('Erro ao enviar comentário:', error);
-        })
-      };
+        });
     }
+  }
+};
 </script>
