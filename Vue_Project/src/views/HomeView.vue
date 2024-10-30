@@ -24,6 +24,8 @@ export default {
           publicacoes: [],
       };
   },
+
+  
   mounted() {
       fetch('http://localhost:8080/publicacao')
           .then(response => response.json())
