@@ -33,4 +33,9 @@ public class PublicacaoService {
         repository.deleteById(id);
         return true;
     }
+    public Publicacao getPublicacaoById(Integer id) {
+        return repository.findById(id)
+                .orElse(null);
+    }
+
 }
