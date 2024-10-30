@@ -1,6 +1,9 @@
 <template>
   <div class="greetings">
-      <div class="public" v-for="publicacao in publicacoes" :key="publicacao.id">~
+    <!-- Loop de publicações sendo chamado na tela principal "home" -->
+      <div class="public" v-for="publicacao in publicacoes" :key="publicacao.id">
+        <!-- Router Link das publicações, clicar em qualquer publicação leva o usuario para 
+        o endereço "/artigo/{id da publicação}"  -->
         <router-link :to="`/artigo/${publicacao.id}`">
           {{ publicacao.titulo }}
           {{ publicacao.verificacao }}
@@ -11,13 +14,13 @@
           <br>
           {{ new Date(publicacao.dataPublicacao).toLocaleDateString() }}
         </router-link>
-
       </div>
   </div>
 </template>
 
 
 <script>
+// Armazenando as Publicações
 export default {
   data() {
       return {
@@ -25,7 +28,7 @@ export default {
       };
   },
 
-  
+  // Chamando o EndPoint do Back e armazenando o publicações no data
   mounted() {
       fetch('http://localhost:8080/publicacao')
           .then(response => response.json())

@@ -1,25 +1,28 @@
 <template>
+  <!-- Template inicial de uma publicação exibindo o titulo, o conteudo e os comentarios  -->
   <div>
     <h1>{{ publicacao.titulo }}</h1>
     <p>{{ publicacao.texto }}</p>
     <h3>Comentários</h3>
+
+    <!-- Loop pra chamar os comentarios -->
     <ul>
       <li v-for="comentario in comentarios" :key="comentario.id">
         {{ comentario.desc }} - <strong>{{ comentario.usuario.nick }}</strong>
       </li>
     </ul>
 
+    <!-- Adicionando comentarios (Rever essa parte ainda) -->
     <h3>Adicionar Comentário</h3>
     <form @submit.prevent="enviarComentario">
       <textarea v-model="novoComentario.desc" required></textarea>
       <button type="submit">Enviar</button>
     </form>
-
-
   </div>
 </template>
 
 <script>
+// Armazenando dados da API
 export default {
   data() {
     return {
@@ -33,6 +36,8 @@ export default {
       }
     };
   },
+
+  // Chamada da publicação e dos comentarios pelo Id das publicações 
   mounted() {
     const publicacaoId = this.$route.params.id;
 
@@ -48,6 +53,9 @@ export default {
         this.comentarios = data;
       });
   },
+
+  // Metodo para enviar comentario, ele armazena o id da publicação e cria uma desc baseado 
+  // no que o usuario digitar no textarea, 
   methods: {
     enviarComentario() {
       const publicacaoId = this.$route.params.id;

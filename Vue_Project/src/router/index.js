@@ -1,12 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import ArtigoView from '@/views/ArtigoView.vue'
-import Publicacao from '@/components/Publicacao.vue'
 import Login from '../views/Login.vue'
-import Dashboard from '@/views/Dashboard.vue'
 
-import AuthService from '@/services/auth.service.js'
-
+// Rotas chamando o componente especifico de cada um.
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -26,18 +23,6 @@ const router = createRouter({
       path: '/login/',
       name: 'login',
       component: Login
-    },
-
-    {
-      path: '/dashboard/',
-      name: 'dashboard',
-      component: Dashboard
-    },
-
-    {
-      path: '/pub',
-      name: 'publicacao',
-      component: Publicacao
     }
 
   ]

@@ -31,7 +31,6 @@
   </template>
   
   <script>
-    import LoginService from '@/services/login.service.js';
 
     export default {
     data() {
