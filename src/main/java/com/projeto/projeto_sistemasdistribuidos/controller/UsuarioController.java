@@ -3,6 +3,8 @@ package com.projeto.projeto_sistemasdistribuidos.controller;
 import com.projeto.projeto_sistemasdistribuidos.UsuarioService.UsuarioService;
 import com.projeto.projeto_sistemasdistribuidos.model.Usuario;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -40,4 +42,12 @@ public class UsuarioController {
         return ResponseEntity.status(204).build();
     }
 
+    @PostMapping("/login")
+    public ResponseEntity<Usuario> validarSenha(@RequestBody Usuario usuario) {
+        Boolean valid = usuarioservice.validarSenha(usuario);
+        if (!valid) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+        return ResponseEntity.status(200).build();
+    }
 }
