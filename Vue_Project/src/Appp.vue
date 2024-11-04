@@ -5,7 +5,7 @@ import { RouterLink, RouterView } from 'vue-router'
 <!-- Tela pricipal com um menu de navegação e duas rotas -->
 <template>
   <header>
-    <div id="header">
+    <div id="container">
       <div class="titulo" role="header">
         BACKDOOR
       </div> 
@@ -44,15 +44,18 @@ export default {
 
 <style>
 
-#header {
+#container {
     
-    width: 800px;
+    width: 816px;
+    height: 90px;
     margin-left:200px;
-    background-color: rgb(129, 74, 180);
+    background-color: #4F2869;
+    display: flex;
+    justify-content: space-between;
 }
 
 .titulo {
-  font-size: 35px;
+  font-size: 40px;
   text-align: left;
   margin-left: 20px;
   padding-top: 15px;
@@ -60,31 +63,32 @@ export default {
 }
 
 .cadastro {
-  margin-right: 10px;
-  text-align: right;
+  padding-top: 35px;
+  margin-left: 50px;
 }
 
 .wrapper {
-
-    text-align: center;
+    width: 815px;
+    border: 1px solid #c965f0;
+    height: 45px;
     background-color: black;
     font-family: Arial;
     font-size: 25px;
     color: white;
-    margin-left:300px;
-    background-color: rgb(103, 41, 155);
+    background-color: #52275C;
+    display: inline-block;
   }
 
 
   .wrapper {
-    
+   
     padding: 0px;
     margin: 0px;
     list-style: none;
 }
 
 .wrapper ul li {
-  padding: 2px 10px;
+  padding: 2px 32px;
   display: inline;
     
 }
