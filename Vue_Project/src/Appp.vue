@@ -58,7 +58,7 @@ export default {
   font-size: 40px;
   text-align: left;
   margin-left: 20px;
-  padding-top: 15px;
+  padding-top: 13px;
   font-family: fantasy;
 }
 
@@ -119,8 +119,8 @@ export default {
 
 .cadastro ul li a:hover {
   
-    color: #bd8fe7;
-    border-bottom: 3px solid rgb(106, 49, 240);
+    color: #ffffff;
+    border-bottom: 3px solid rgb(255, 255, 255);
 }
 
 </style>
