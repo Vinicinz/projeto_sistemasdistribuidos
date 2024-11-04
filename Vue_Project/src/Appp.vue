@@ -10,7 +10,8 @@ import { RouterLink, RouterView } from 'vue-router'
         BACKDOOR
       </div> 
       <div class="cadastro" role="navigation">
-        <ul><li><a href="#">Entrar/Cadastrar</a></li></ul>
+        <ul><li><a href="#"><RouterLink to="/login">Entrar</RouterLink></a></li>/
+        <li><a href="#"><RouterLink to="/login">Cadastrar</RouterLink></a></li></ul>
       </div>
     </div>
 
@@ -19,7 +20,7 @@ import { RouterLink, RouterView } from 'vue-router'
       <nav>
         <ul>
         <li><a href=""><RouterLink to="/">Home</RouterLink></a></li>
-        <li><a href=""><RouterLink to="/login">Login</RouterLink></a></li>
+        <li><a href=""><RouterLink to="/categoria">Categoria</RouterLink></a></li>
         <li><a href=""><RouterLink to="/sobreNos">Sobre Nós</RouterLink></a></li>
         <li><a href=""><RouterLink to="/contato">Contato</RouterLink></a></li>
       
@@ -44,53 +45,51 @@ export default {
 
 <style>
 
-#container {
-    
-    width: 816px;
-    height: 90px;
-    margin-left:200px;
+#container {  
+    width: 100%;
+    height: 120px;
     background-color: #4F2869;
     display: flex;
     justify-content: space-between;
 }
 
 .titulo {
-  font-size: 40px;
+  font-size: 45px;
   text-align: left;
   margin-left: 20px;
-  padding-top: 13px;
+  padding-top: 2rem;
   font-family: fantasy;
 }
 
 .cadastro {
-  padding-top: 35px;
-  margin-left: 50px;
+  font-size: 25px;
+  padding-top:  3rem;
+  margin-right: 40px;
 }
 
 .wrapper {
-    width: 815px;
+    width: 100%;
     border: 1px solid #c965f0;
-    height: 45px;
+    height: 60px;
     background-color: black;
     font-family: Arial;
     font-size: 25px;
     color: white;
     background-color: #52275C;
-    display: inline-block;
   }
 
 
   .wrapper {
    
-    padding: 0px;
+    padding: 5px;
     margin: 0px;
     list-style: none;
 }
 
 .wrapper ul li {
-  padding: 2px 32px;
-  display: inline;
-    
+  margin-left: 60px;
+  margin-top: 5px;
+  display: inline-block;
 }
 
 .wrapper ul li a{
@@ -111,14 +110,13 @@ export default {
 }
 
 .cadastro ul li a{
-  padding: 2px 10px;
+  padding: 2px;
   text-decoration: none;
   color: white;
   
 }
 
 .cadastro ul li a:hover {
-  
     color: #ffffff;
     border-bottom: 3px solid rgb(255, 255, 255);
 }
