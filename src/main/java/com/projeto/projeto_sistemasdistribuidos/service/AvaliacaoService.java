@@ -1,4 +1,4 @@
-package com.projeto.projeto_sistemasdistribuidos.UsuarioService;
+package com.projeto.projeto_sistemasdistribuidos.service;
 
 import org.springframework.stereotype.Service;
 import com.projeto.projeto_sistemasdistribuidos.model.Avaliacao;

@@ -1,4 +1,4 @@
-package com.projeto.projeto_sistemasdistribuidos.UsuarioService;
+package com.projeto.projeto_sistemasdistribuidos.service;
 
 import com.projeto.projeto_sistemasdistribuidos.model.Permissao;
 import com.projeto.projeto_sistemasdistribuidos.repository.PermissaoRepository;

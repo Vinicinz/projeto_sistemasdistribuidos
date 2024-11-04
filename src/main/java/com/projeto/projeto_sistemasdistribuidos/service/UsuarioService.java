@@ -1,4 +1,4 @@
-package com.projeto.projeto_sistemasdistribuidos.UsuarioService;
+package com.projeto.projeto_sistemasdistribuidos.service;
 
 import com.projeto.projeto_sistemasdistribuidos.repository.UsuarioRepository;
 import com.projeto.projeto_sistemasdistribuidos.model.Usuario;
@@ -47,8 +47,7 @@ public class UsuarioService implements UserDetailsService {
     }
 
     public Boolean validarSenha(Usuario usuario) {
-        Optional<Usuario> usuarioOptional = repository.getByEmail(usuario.getEmail());
-        return usuarioOptional.isPresent() && passwordEncoder.matches(usuario.getSenha(), usuarioOptional.get().getSenha());
+        return null;
     }
 
     @Override
