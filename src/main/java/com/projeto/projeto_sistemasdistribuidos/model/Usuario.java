@@ -23,13 +23,13 @@ public class Usuario implements UserDetails {
     private String email ;
 
     @Column (name = "USU_STR_SENHA")
-    private String senha;
+    private String password;
 
     @Column (name = "USU_STR_NICK")
-    private String nick;
+    private String login;
 
     @Column (name = "PER_INT_ID")
-    private Role role;
+    private Integer role;
 
 
     public Integer getId() {
@@ -49,38 +49,38 @@ public class Usuario implements UserDetails {
     }
 
     public String getSenha() {
-        return senha;
+        return password;
     }
 
-    public void setSenha(String senha) {
-        this.senha = senha;
+    public void setSenha(String password) {
+        this.password = password;
     }
 
-    public String getNick() {
-        return nick;
+    public String getLogin() {
+        return login;
     }
 
-    public void setNick(String nick) {
-        this.nick = nick;
+    public void setLogin(String login) {
+        this.login = login;
     }
 
-    public Role getRole() {
+    public Integer getRole() {
         return role;
     }
 
-    public void setRole(Role role) {
+    public void setRole(Integer role) {
         this.role = role;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        if (this.role == Role.ADMIN) return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"), new SimpleGrantedAuthority("Role_User"));
+        if (this.role == 1) return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"), new SimpleGrantedAuthority("Role_User"));
         else return List.of(new SimpleGrantedAuthority("ROLE_USER"));
     }
 
     @Override
     public String getPassword() {
-        return senha;
+        return password;
     }
 
     @Override
