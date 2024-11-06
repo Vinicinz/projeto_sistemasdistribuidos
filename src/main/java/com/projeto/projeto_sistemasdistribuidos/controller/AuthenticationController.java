@@ -1,6 +1,8 @@
 package com.projeto.projeto_sistemasdistribuidos.controller;
 
+import com.projeto.projeto_sistemasdistribuidos.config.TokenService;
 import com.projeto.projeto_sistemasdistribuidos.model.AuthenticationDTO;
+import com.projeto.projeto_sistemasdistribuidos.model.LoginResponseDTO;
 import com.projeto.projeto_sistemasdistribuidos.model.RegisterDTO;
 import com.projeto.projeto_sistemasdistribuidos.model.Usuario;
 import com.projeto.projeto_sistemasdistribuidos.repository.UsuarioRepository;
@@ -22,12 +24,17 @@ public class AuthenticationController {
     private AuthenticationManager authenticationManager;
     @Autowired
     private UsuarioRepository repository;
+    @Autowired
+    private TokenService tokenService;
 
     @PostMapping("/login")
     public ResponseEntity login(@RequestBody @Valid AuthenticationDTO data){
         var usernamePassword = new UsernamePasswordAuthenticationToken(data.login(), data.password());
         var auth = this.authenticationManager.authenticate(usernamePassword);
-        return ResponseEntity.ok().build();
+
+        var token = tokenService.generateToken((Usuario) auth.getPrincipal());
+
+        return ResponseEntity.ok(new LoginResponseDTO(token));
     }
 
     @PostMapping("/register")
