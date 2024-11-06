@@ -41,12 +41,4 @@ public class UsuarioController {
         return ResponseEntity.status(204).build();
     }
 
-    @PostMapping("/login")
-    public ResponseEntity<Usuario> validarSenha(@RequestBody Usuario usuario) {
-        Boolean valid = usuarioservice.validarSenha(usuario);
-        if (!valid) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
-        }
-        return ResponseEntity.status(200).build();
-    }
 }

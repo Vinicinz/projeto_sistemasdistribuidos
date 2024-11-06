@@ -1,12 +1,10 @@
 package com.projeto.projeto_sistemasdistribuidos.model;
 
 import jakarta.persistence.*;
-import org.hibernate.mapping.UniqueKey;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;
 
@@ -32,6 +30,17 @@ public class Usuario implements UserDetails {
     private Integer role;
 
 
+    public Usuario(String email, String login, String password, Integer role) {
+        this.email = email;
+        this.login = login;
+        this.password = password;
+        this.role = role;
+    }
+
+    public Usuario() {
+
+    }
+
     public Integer getId() {
         return id;
     }
@@ -48,11 +57,11 @@ public class Usuario implements UserDetails {
         this.email = email;
     }
 
-    public String getSenha() {
+    public String getPassword() {
         return password;
     }
 
-    public void setSenha(String password) {
+    public void setPassword(String password) {
         this.password = password;
     }
 
@@ -74,13 +83,11 @@ public class Usuario implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        if (this.role == 1) return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"), new SimpleGrantedAuthority("Role_User"));
-        else return List.of(new SimpleGrantedAuthority("ROLE_USER"));
-    }
-
-    @Override
-    public String getPassword() {
-        return password;
+        if (this.role == 1) {
+            return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"), new SimpleGrantedAuthority("ROLE_USER"));
+        } else {
+            return List.of(new SimpleGrantedAuthority("ROLE_USER"));
+        }
     }
 
     @Override

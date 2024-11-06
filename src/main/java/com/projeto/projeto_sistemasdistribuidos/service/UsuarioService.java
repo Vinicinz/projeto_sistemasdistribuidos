@@ -15,11 +15,9 @@ import java.util.Optional;
 public class UsuarioService implements UserDetailsService {
 
     private UsuarioRepository repository;
-    private PasswordEncoder passwordEncoder;
 
     public UsuarioService(UsuarioRepository repository) {
         this.repository = repository;
-        this.passwordEncoder = new BCryptPasswordEncoder();
 
     }
     public List<Usuario> listarUsuario() {
@@ -28,15 +26,11 @@ public class UsuarioService implements UserDetailsService {
     }
 
     public Usuario criarUsuario(Usuario usuario) {
-        String encoder = this.passwordEncoder.encode(usuario.getSenha());
-        usuario.setSenha(encoder);
         Usuario usuarioNovo = repository.save(usuario);
         return usuarioNovo;
     }
 
     public Usuario editarUsuario(Usuario usuario) {
-        String encoder = this.passwordEncoder.encode(usuario.getSenha());
-        usuario.setSenha(encoder);
         Usuario usuarioNovo = repository.save(usuario);
         return usuarioNovo;
     }
@@ -44,10 +38,6 @@ public class UsuarioService implements UserDetailsService {
     public Boolean excluirUsuario(Integer id) {
         repository.deleteById(id);
         return true;
-    }
-
-    public Boolean validarSenha(Usuario usuario) {
-        return null;
     }
 
     @Override
