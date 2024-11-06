@@ -1,10 +1,111 @@
 @import './base.css';
 
 #app {
-  max-width: 1280px;
+  max-width: 100%;
   text-align: center;
   margin: 0 auto;
-  padding: 2rem;
   font-weight: normal;
   text-decoration: none;
+}
+
+#container {  
+  width: 100%;
+  height: 120px;
+  background-color: #921e1e;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.titulo {
+display: flex;
+color: white;
+letter-spacing: 5px;
+font-size: 40px;
+font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.titulo a{
+margin-left: 10px;
+text-decoration: none;
+color: white;
+
+}
+
+.cadastro {
+font-size: 20px;
+margin-right: 15px;
+}
+
+
+.cadastro button{
+cursor: pointer;
+margin: 5px;
+border-radius: 5px;
+padding: 8px;
+}
+
+.cadastro button a {
+padding: 5px;
+text-decoration: none;
+}
+
+.sign-in{
+background-color: transparent;
+border: 1px solid rgb(255, 255, 255);
+box-sizing: border-box;
+box-shadow: black 1px 1px;
+font-size: 25px;
+
+
+}
+
+.sign-in a{
+color: white;
+}
+
+.sign-in a:hover {
+  border-bottom: 2px solid white;
+  padding: 0px 5px;
+}
+
+
+.sign-out{
+background-color: white;
+border: 1px solid rgb(0, 0, 0);
+box-sizing: border-box;
+font-size: 25px;
+
+}
+
+.sign-out a{
+color: black;
+}
+
+.sign-out a:hover {
+  border-bottom: 2px solid black;
+  padding: 0px 5px;
+}
+
+.cabecalho {
+letter-spacing: 2px;
+margin-left: 40px;
+font-size: 25px;
+display: flex;
+list-style: none;
+align-items: center;
+}
+
+.cabecalho li a{
+text-decoration: none;
+color: white;
+}
+
+.cabecalho a{
+
+margin-right: 10px;
+}
+
+.cabecalho li a:hover {
+  border-bottom: 3px solid #ffffff;
 }
