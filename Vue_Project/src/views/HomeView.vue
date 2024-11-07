@@ -1,20 +1,32 @@
 <template>
-  <div class="greetings">
-    <!-- Loop de publicações sendo chamado na tela principal "home" -->
-      <div class="public" v-for="publicacao in publicacoes" :key="publicacao.id">
-        <!-- Router Link das publicações, clicar em qualquer publicação leva o usuario para 
-        o endereço "/artigo/{id da publicação}"  -->
-        <router-link :to="`/artigo/${publicacao.id}`">
-          {{ publicacao.titulo }}
-          {{ publicacao.verificacao }}
-          <br>
-          {{ publicacao.usuario.nick }}
-          <br>
-          {{ publicacao.texto }}
-          <br>
-          {{ new Date(publicacao.dataPublicacao).toLocaleDateString() }}
-        </router-link>
-      </div>
+  <div class="header-buttons">
+    <button class="new-btn">Novo</button>
+    <button class="top-btn">Top</button>
+    <button class="trending-btn">Do Momento</button>
+  </div>
+  <div class="post-container">
+    <div class="post" v-for="publicacao in publicacoes" :key="publicacao.id">
+      <router-link :to="`/artigo/${publicacao.id}`">
+        <div class="post-header">
+          <img src="https://via.placeholder.com/40" alt="User Profile">
+          <div class="user-info">
+            <div>
+              <span class="username"> {{ publicacao.usuario.login }} </span> 
+              <span> {{ publicacao.verificacao }} </span>
+            </div>
+            <span class="time"> {{ new Date(publicacao.dataPublicacao).toLocaleDateString() }}</span>
+          </div>
+        </div>
+        <div class="post-content">
+          <h4>{{ publicacao.titulo }}</h4>
+          <p>{{ publicacao.texto }}</p>
+        </div>
+        <div class="post-footer">
+          <span>Gostei | Comentar </span>
+          <span> 0 </span>
+        </div>
+      </router-link>
+    </div>
   </div>
 </template>
 
@@ -23,35 +35,19 @@
 // Armazenando as Publicações
 export default {
   data() {
-      return {
-          publicacoes: [],
-      };
+    return {
+      publicacoes: [],
+    };
   },
 
   // Chamando o EndPoint do Back e armazenando o publicações no data
   mounted() {
-      fetch('http://localhost:8080/publicacao')
-          .then(response => response.json())
-          .then(data => {
-              this.publicacoes = data;
-          })
-          .catch(error => console.error('Erro ao buscar dados:', error));
+    fetch('http://localhost:8080/publicacao')
+      .then(response => response.json())
+      .then(data => {
+        this.publicacoes = data;
+      })
+      .catch(error => console.error('Erro ao buscar dados:', error));
   },
 };
 </script>
-
-
-<style>
-.public {
-  border: solid black 2px;
-  margin: 10px;
-  padding: 10px;
-  font-size: 20px;
-
-
-}
-.public a {
-  text-decoration: none;
-  color: inherit; 
-}
-</style>

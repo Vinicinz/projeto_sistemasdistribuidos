@@ -1,4 +1,7 @@
 import './assets/main.css'
+import './assets/home.css';
+import './assets/publicacao.css';
+
 
 import { createApp } from 'vue'
 import App from './Appp.vue'
