@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import ArtigoView from '@/views/ArtigoView.vue'
+import ArtigoView from '@/views/PublicacaoView.vue'
 import Login from '../views/Login.vue'
 
 // Rotas chamando o componente especifico de cada um.

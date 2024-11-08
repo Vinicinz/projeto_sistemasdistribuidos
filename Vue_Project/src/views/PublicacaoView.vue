@@ -1,3 +1,6 @@
+<!-- esse cara ainda esta uma bagunça, mas vamos ajeitar e vai dar tudo certo! -->
+
+
 <template>
   <!-- Template inicial de uma publicação exibindo o titulo, o conteudo e os comentarios  -->
   <div>
@@ -8,7 +11,7 @@
     <!-- Loop pra chamar os comentarios -->
     <ul>
       <li v-for="comentario in comentarios" :key="comentario.id">
-        {{ comentario.desc }} - <strong>{{ comentario.usuario.nick }}</strong>
+        {{ comentario.desc }} - <strong>{{ comentario.usuario.login }}</strong>
       </li>
     </ul>
 
@@ -31,7 +34,7 @@ export default {
       novoComentario: {
         desc: '',
         usuario: {
-          id: '5'
+          id: '1'
         }
       }
     };

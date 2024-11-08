@@ -39,7 +39,9 @@ public class WebSecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/publicacao").permitAll()
                         .requestMatchers(HttpMethod.GET, "/comentario").permitAll()
                         .requestMatchers(HttpMethod.POST, "/comentario").permitAll()
-                        .anyRequest().authenticated()
+//                        .anyRequest().authenticated()
+                                .anyRequest().permitAll()
+
                 )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
