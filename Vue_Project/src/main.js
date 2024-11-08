@@ -1,10 +1,10 @@
-import './assets/main.css'
-import './assets/home.css';
-import './assets/publicacao.css';
+import './assets/Header.css'
+import './assets/App.css';
+import './assets/Publicacao.css';
 
 
 import { createApp } from 'vue'
-import App from './Appp.vue'
+import App from './App.vue'
 import router from './router'
 
 const app = createApp(App)
