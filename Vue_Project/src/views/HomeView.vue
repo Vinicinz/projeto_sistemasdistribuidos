@@ -1,8 +1,14 @@
+<!-- Componente central do site, onde aparecem as publicações -->
 <template>
-  <div class="header-buttons">
-    <button class="new-btn">Novo</button>
-    <button class="top-btn">Top</button>
-    <button class="trending-btn">Do Momento</button>
+  <div class="mydict">
+    <div><label><input type="radio" name="radio" checked=""><span>
+          <Clock /> Novo
+        </span></label>
+      <label><input type="radio" name="radio"><span><arrow-up /> Top</span></label>
+      <label> <input type="radio" name="radio"><span>
+          <Fire /> Do Momento
+        </span></label>
+    </div>
   </div>
   <div class="post-container">
     <div class="post" v-for="publicacao in publicacoes" :key="publicacao.id">
@@ -10,15 +16,18 @@
         <div class="post-header">
           <img src="https://via.placeholder.com/40" alt="User Profile">
           <div class="user-info">
-            <div>
-              <span class="username"> {{ publicacao.usuario.login }} </span> 
-              <span> {{ publicacao.verificacao }} </span>
-            </div>
+            <span class="username"> {{ publicacao.usuario.login }} </span>
             <span class="time"> {{ new Date(publicacao.dataPublicacao).toLocaleDateString() }}</span>
           </div>
         </div>
         <div class="post-content">
-          <h4>{{ publicacao.titulo }}</h4>
+          <h4>{{ publicacao.titulo }}
+            <span class="tooltip-container" v-if="publicacao.verificacao === true">
+              <Verify /><span class="tooltip-text">Publicação Verificada!</span>
+            </span>
+            <span v-else> Elemento B </span>
+
+          </h4>
           <p>{{ publicacao.texto }}</p>
         </div>
         <div class="post-footer">
@@ -30,10 +39,20 @@
   </div>
 </template>
 
-
+<!-- iniciando componentes de icones -->
 <script>
-// Armazenando as Publicações
+import ArrowUp from '@/components/icons/arrow-up.vue';
+import Clock from '@/components/icons/clock.vue';
+import Fire from '@/components/icons/fire.vue';
+import Verify from '@/components/icons/verify.vue';
 export default {
+  components: {
+    Clock,
+    ArrowUp,
+    Fire,
+    Verify
+  },
+  // armazenando as publicações aqui para serem exibidas 
   data() {
     return {
       publicacoes: [],
