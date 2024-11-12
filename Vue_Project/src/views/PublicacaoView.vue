@@ -3,8 +3,25 @@
 
 <template>
   <!-- Template inicial de uma publicação exibindo o titulo, o conteudo e os comentarios  -->
-  <div>
-    <h1>{{ publicacao.titulo }}</h1>
+  <div class="post">
+SALVE
+
+    <div class="post-header">
+      <img src="https://via.placeholder.com/40" alt="User Profile">
+      <div class="user-info">
+        <span class="username"> {{ publicacao.usuario.login }} </span>
+        <span class="time"> {{ new Date(publicacao.dataPublicacao).toLocaleDateString() }}</span>
+      </div>
+    </div>
+    <div class="post-content">
+      <h2>{{ publicacao.titulo }}
+         <span class="tooltip-container" v-if="publicacao.verificacao === true">
+          <Verify /><span class="tooltip-text">Publicação Verificada!</span>
+        </span>
+        <span v-else> Elemento B </span>
+      </h2>
+    </div>
+
     <p>{{ publicacao.texto }}</p>
     <h3>Comentários</h3>
 
@@ -22,11 +39,17 @@
       <button type="submit">Enviar</button>
     </form>
   </div>
+
 </template>
 
 <script>
 // Armazenando dados da API
+import Verify from '@/components/icons/verify.vue';
+
 export default {
+  components: {
+    Verify
+  },
   data() {
     return {
       publicacao: {},
