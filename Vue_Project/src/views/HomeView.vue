@@ -12,7 +12,7 @@
   </div>
   <div class="post-container">
     <div class="post" v-for="publicacao in publicacoes" :key="publicacao.id">
-      <router-link :to="`/artigo/${publicacao.id}`">
+      <router-link :to="`/publicacao/${publicacao.id}`">
         <div class="post-header">
           <img src="https://via.placeholder.com/40" alt="User Profile">
           <div class="user-info">
@@ -45,6 +45,7 @@ import ArrowUp from '@/components/icons/arrow-up.vue';
 import Clock from '@/components/icons/clock.vue';
 import Fire from '@/components/icons/fire.vue';
 import Verify from '@/components/icons/verify.vue';
+import artigoServices from '../../services/artigo.services';
 
 export default {
   components: {
@@ -60,14 +61,14 @@ export default {
     };
   },
 
-  // Chamando o EndPoint do Back e armazenando o publicações no data
-  mounted() {
-    fetch('http://localhost:8080/publicacao')
-      .then(response => response.json())
-      .then(data => {
-        this.publicacoes = data;
-      })
-      .catch(error => console.error('Erro ao buscar dados:', error));
+  // Chamando o EndPoint do Back e armazenando em publicacoes
+  async mounted() {
+    try {
+      const response = await artigoServices.getPublicacoes(); // Usando o serviço para fazer a requisição
+      this.publicacoes = response.data; // Armazenando os dados no data
+    } catch (error) {
+      console.error('Erro ao buscar dados:', error);
+    }
   },
 };
 </script>
