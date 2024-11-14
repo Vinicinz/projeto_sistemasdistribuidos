@@ -1,9 +1,7 @@
 package com.projeto.projeto_sistemasdistribuidos.controller;
 
-import com.projeto.projeto_sistemasdistribuidos.UsuarioService.PessoaService;
+import com.projeto.projeto_sistemasdistribuidos.service.PessoaService;
 import com.projeto.projeto_sistemasdistribuidos.model.Pessoa;
-import com.projeto.projeto_sistemasdistribuidos.repository.PessoaRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

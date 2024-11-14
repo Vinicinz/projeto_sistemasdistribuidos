@@ -1,6 +1,6 @@
 package com.projeto.projeto_sistemasdistribuidos.controller;
 
-import com.projeto.projeto_sistemasdistribuidos.UsuarioService.PermissaoService;
+import com.projeto.projeto_sistemasdistribuidos.service.PermissaoService;
 import com.projeto.projeto_sistemasdistribuidos.model.Permissao;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

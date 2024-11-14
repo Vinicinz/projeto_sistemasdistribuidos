@@ -3,7 +3,7 @@ package com.projeto.projeto_sistemasdistribuidos.controller;
 import java.util.List;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import com.projeto.projeto_sistemasdistribuidos.UsuarioService.AvaliacaoService;
+import com.projeto.projeto_sistemasdistribuidos.service.AvaliacaoService;
 import com.projeto.projeto_sistemasdistribuidos.model.Avaliacao;
 
 

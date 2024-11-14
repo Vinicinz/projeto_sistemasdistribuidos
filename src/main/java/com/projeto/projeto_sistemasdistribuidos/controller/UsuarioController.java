@@ -1,8 +1,9 @@
 package com.projeto.projeto_sistemasdistribuidos.controller;
 
-import com.projeto.projeto_sistemasdistribuidos.UsuarioService.UsuarioService;
+import com.projeto.projeto_sistemasdistribuidos.service.UsuarioService;
 import com.projeto.projeto_sistemasdistribuidos.model.Usuario;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

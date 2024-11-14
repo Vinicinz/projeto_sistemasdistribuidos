@@ -1,14 +1,34 @@
+<!-- esse cara ainda esta uma bagunça, mas vamos ajeitar e vai dar tudo certo! -->
+
+
 <template>
   <!-- Template inicial de uma publicação exibindo o titulo, o conteudo e os comentarios  -->
-  <div>
-    <h1>{{ publicacao.titulo }}</h1>
+  <div class="post">
+SALVE
+
+    <div class="post-header">
+      <img src="https://via.placeholder.com/40" alt="User Profile">
+      <div class="user-info">
+        <span class="username"> {{ publicacao.usuario ? publicacao.usuario.login : 'Usuário' }} </span>
+        <span class="time"> {{ new Date(publicacao.dataPublicacao).toLocaleDateString() }}</span>
+      </div>
+    </div>
+    <div class="post-content">
+      <h2>{{ publicacao.titulo }}
+         <span class="tooltip-container" v-if="publicacao.verificacao === true">
+          <Verify /><span class="tooltip-text">Publicação Verificada!</span>
+        </span>
+        <span v-else> Elemento B </span>
+      </h2>
+    </div>
+    <QuillEditor theme="snow" />
     <p>{{ publicacao.texto }}</p>
     <h3>Comentários</h3>
 
     <!-- Loop pra chamar os comentarios -->
     <ul>
       <li v-for="comentario in comentarios" :key="comentario.id">
-        {{ comentario.desc }} - <strong>{{ comentario.usuario.nick }}</strong>
+        {{ comentario.desc }} - <strong>{{ comentario.usuario.login }}</strong>
       </li>
     </ul>
 
@@ -19,11 +39,19 @@
       <button type="submit">Enviar</button>
     </form>
   </div>
+
 </template>
 
 <script>
 // Armazenando dados da API
+import Verify from '@/components/icons/verify.vue';
+import { QuillEditor } from '@vueup/vue-quill'
+import '@vueup/vue-quill/dist/vue-quill.snow.css';
+
 export default {
+  components: {
+    Verify, QuillEditor
+  },
   data() {
     return {
       publicacao: {},
@@ -31,7 +59,7 @@ export default {
       novoComentario: {
         desc: '',
         usuario: {
-          id: '5'
+          id: '1'
         }
       }
     };

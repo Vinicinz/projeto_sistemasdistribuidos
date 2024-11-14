@@ -1,6 +1,6 @@
 package com.projeto.projeto_sistemasdistribuidos.controller;
 
-import com.projeto.projeto_sistemasdistribuidos.UsuarioService.PublicacaoService;
+import com.projeto.projeto_sistemasdistribuidos.service.PublicacaoService;
 import com.projeto.projeto_sistemasdistribuidos.model.Publicacao;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

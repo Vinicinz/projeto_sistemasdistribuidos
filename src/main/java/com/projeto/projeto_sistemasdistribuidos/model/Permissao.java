@@ -14,10 +14,6 @@ public class Permissao {
     @Column(name = "PER_INT_NVLACESSO")
     private int nivelAcesso;
 
-    @ManyToOne
-    @JoinColumn(name = "USU_INT_ID", referencedColumnName = "USU_INT_ID")
-    private Usuario usuario;
-
     public int getId() {return id;}
 
     public void setId(int id) {this.id = id;}
@@ -26,7 +22,4 @@ public class Permissao {
 
     public void setNivelAcesso(int nivelAcesso) {this.nivelAcesso = nivelAcesso;}
 
-    public Usuario getUsuario() {return usuario;}
-
-    public void setUsuario(Usuario usuario) {this.usuario = usuario;}
 }

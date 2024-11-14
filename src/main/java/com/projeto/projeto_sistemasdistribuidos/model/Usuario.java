@@ -1,10 +1,16 @@
 package com.projeto.projeto_sistemasdistribuidos.model;
 
 import jakarta.persistence.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Table(name = "usuario")
-public class Usuario {
+public class Usuario implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -12,13 +18,28 @@ public class Usuario {
     private Integer id;
 
     @Column (name ="USU_STR_EMAIL")
-    private String email;
+    private String email ;
 
     @Column (name = "USU_STR_SENHA")
-    private String senha;
+    private String password;
 
     @Column (name = "USU_STR_NICK")
-    private String nick;
+    private String login;
+
+    @Column (name = "PER_INT_ID")
+    private Integer role;
+
+
+    public Usuario(String email, String login, String password, Integer role) {
+        this.email = email;
+        this.login = login;
+        this.password = password;
+        this.role = role;
+    }
+
+    public Usuario() {
+
+    }
 
     public Integer getId() {
         return id;
@@ -36,16 +57,61 @@ public class Usuario {
         this.email = email;
     }
 
-    public String getSenha() {
-        return senha;
+    public String getPassword() {
+        return password;
     }
 
-    public String getNick() {return nick;}
-
-    public String setNick(String nick) {this.nick = nick; return nick; }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public Integer getRole() {
+        return role;
+    }
+
+    public void setRole(Integer role) {
+        this.role = role;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        if (this.role == 1) {
+            return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"), new SimpleGrantedAuthority("ROLE_USER"));
+        } else {
+            return List.of(new SimpleGrantedAuthority("ROLE_USER"));
+        }
+    }
+
+    @Override
+    public String getUsername() {
+        return email;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
 }
