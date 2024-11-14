@@ -12,7 +12,7 @@
 
       <div class="cadastro" role="navigation">
         <button class="sign-in"><a href="#"><RouterLink to="/login">Sign in</RouterLink></a></button>
-        <button class="sign-out"><a href="#"><RouterLink to="/login">Sign Out</RouterLink></a></button>
+        <button class="sign-out"><a href="#"><RouterLink to="/cadastro">Sign Out</RouterLink></a></button>
       </div>
 
     </div>

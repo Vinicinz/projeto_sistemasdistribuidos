@@ -7,12 +7,7 @@
     <div class="post-header">
       <img src="https://via.placeholder.com/40" alt="User Profile">
       <div class="user-info">
-<<<<<<< HEAD
         <span class="username"> {{ publicacao.usuario ? publicacao.usuario.login : 'Usuário' }} </span>
-=======
-        <span class="username"> {{ publicacao.usuario?.login || 'Usuário desconhecido' }} </span>
-
->>>>>>> Tela-de-Login
         <span class="time"> {{ new Date(publicacao.dataPublicacao).toLocaleDateString() }}</span>
       </div>
     </div>
@@ -56,13 +51,10 @@
 <script>
 // Armazenando dados da API
 import Verify from '@/components/icons/verify.vue';
-<<<<<<< HEAD
 import { QuillEditor } from '@vueup/vue-quill'
 import '@vueup/vue-quill/dist/vue-quill.snow.css';
-=======
 import artigoServices from '../../services/artigo.services';
 import { isAuthenticated } from '@/router/auth';
->>>>>>> Tela-de-Login
 
 export default {
   components: {
