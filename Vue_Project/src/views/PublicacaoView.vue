@@ -4,18 +4,17 @@
 <template>
   <!-- Template inicial de uma publicação exibindo o titulo, o conteudo e os comentarios  -->
   <div class="post">
-SALVE
-
     <div class="post-header">
       <img src="https://via.placeholder.com/40" alt="User Profile">
       <div class="user-info">
-        <span class="username"> {{ publicacao.usuario.login }} </span>
+        <span class="username"> {{ publicacao.usuario?.login || 'Usuário desconhecido' }} </span>
+
         <span class="time"> {{ new Date(publicacao.dataPublicacao).toLocaleDateString() }}</span>
       </div>
     </div>
     <div class="post-content">
       <h2>{{ publicacao.titulo }}
-         <span class="tooltip-container" v-if="publicacao.verificacao === true">
+        <span class="tooltip-container" v-if="publicacao.verificacao === true">
           <Verify /><span class="tooltip-text">Publicação Verificada!</span>
         </span>
         <span v-else> Elemento B </span>
@@ -32,12 +31,20 @@ SALVE
       </li>
     </ul>
 
+
+    <div>
+      <div v-if="isAuthenticated">
+        <h3>Adicionar Comentário</h3>
+        <form @submit.prevent="enviarComentario">
+          <textarea v-model="novoComentario.desc" required></textarea>
+          <button type="submit">Enviar</button>
+        </form>
+      </div>
+      <div v-else><router-link to="/login">Faça login para comentar</router-link></div>
+    </div>
+
     <!-- Adicionando comentarios (Rever essa parte ainda) -->
-    <h3>Adicionar Comentário</h3>
-    <form @submit.prevent="enviarComentario">
-      <textarea v-model="novoComentario.desc" required></textarea>
-      <button type="submit">Enviar</button>
-    </form>
+
   </div>
 
 </template>
@@ -45,10 +52,17 @@ SALVE
 <script>
 // Armazenando dados da API
 import Verify from '@/components/icons/verify.vue';
+import artigoServices from '../../services/artigo.services';
+import { isAuthenticated } from '@/router/auth';
 
 export default {
   components: {
     Verify
+  },
+  computed: {
+    isAuthenticated() {
+      return isAuthenticated();
+    }
   },
   data() {
     return {
@@ -64,26 +78,28 @@ export default {
   },
 
   // Chamada da publicação e dos comentarios pelo Id das publicações 
-  mounted() {
+  async mounted() {
     const publicacaoId = this.$route.params.id;
+    console.log(publicacaoId)
 
-    fetch(`http://localhost:8080/publicacao/${publicacaoId}`)
-      .then(response => response.json())
-      .then(data => {
-        this.publicacao = data;
-      });
+    try {
+      // Buscar publicação pelo ID
+      const publicacaoResponse = await artigoServices.getArtigo(publicacaoId);
+      this.publicacao = publicacaoResponse.data;
 
-    fetch(`http://localhost:8080/comentario/${publicacaoId}`)
-      .then(response => response.json())
-      .then(data => {
-        this.comentarios = data;
-      });
+      // Buscar comentários pelo ID da publicação
+      const comentariosResponse = await artigoServices.getComentarios(publicacaoId);
+      this.comentarios = comentariosResponse.data;
+    } catch (error) {
+      console.error('Erro ao buscar dados:', error);
+    }
   },
 
   // Metodo para enviar comentario, ele armazena o id da publicação e cria uma desc baseado 
   // no que o usuario digitar no textarea, 
   methods: {
-    enviarComentario() {
+    // Método para enviar comentário
+    async enviarComentario() {
       const publicacaoId = this.$route.params.id;
 
       const comentarioPayload = {
@@ -91,21 +107,13 @@ export default {
         publicacao: { id: publicacaoId }
       };
 
-      fetch('http://localhost:8080/comentario', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(comentarioPayload)
-      })
-        .then(response => response.json())
-        .then(novoComentario => {
-          this.comentarios.push(novoComentario);
-          this.novoComentario.desc = '';
-        })
-        .catch(error => {
-          console.error('Erro ao enviar comentário:', error);
-        });
+      try {
+        const response = await ArtigosService.enviarComentario(comentarioPayload);
+        this.comentarios.push(response.data); // Adiciona o novo comentário na lista
+        this.novoComentario.desc = ''; // Limpa o campo de texto
+      } catch (error) {
+        console.error('Erro ao enviar comentário:', error);
+      }
     }
   }
 };

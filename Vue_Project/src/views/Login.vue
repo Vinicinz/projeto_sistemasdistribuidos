@@ -31,28 +31,6 @@ export default {
   },
 
   methods: {
-    // validateEmail(email) {
-    //   const re = /\S+@\S+\.\S+/;
-    //   // return re.test(email);
-    //   return true
-    // },
-
-
-    // async submitLogin() {
-    //   if (!this.email || !this.password) {
-    //     this.errorMessage = "Preencha todos os campos!";
-    //     return;
-    //   }
-    // },
-
-
-    // async submitLogin() {
-    //   if (!this.validateEmail(this.email)) {
-    //     this.errorMessage = "Por favor, insira um email válido.";
-    //     return;
-    //   }
-    // },
-
     async handleLogin() {
       try {
         const response = await loginServices.login(this.email, this.password);
@@ -60,9 +38,9 @@ export default {
 
         if (response.status === 200) {
           const token = response.data.token;
-          localStorage.setItem("authToken", token);
+          localStorage.setItem('token', token); 
+          this.$router.push('/');
 
-          alert(token)
         } else {
           this.errorMessage = "Erro no login, verifique suas credenciais.";
         }
@@ -71,8 +49,6 @@ export default {
         this.errorMessage = error.response?.data?.message || "Erro ao conectar ao servidor.";
       }
     },
-
-
   },
 };
 </script>
