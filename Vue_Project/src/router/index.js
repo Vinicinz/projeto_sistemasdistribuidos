@@ -2,13 +2,15 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import ArtigoView from '@/views/ArtigoView.vue'
 import Login from '../views/Login.vue'
+import Cadastro from '../views/Cadastro.vue'
+
 
 // Rotas chamando o componente especifico de cada um.
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: '/',
+      path: '/home/',
       name: 'home',
       component: HomeView
     },
@@ -23,6 +25,12 @@ const router = createRouter({
       path: '/login/',
       name: 'login',
       component: Login
+    },
+
+    {
+      path: '/cadastro/',
+      name: 'cadastro',
+      component: Cadastro
     }
 
   ]
