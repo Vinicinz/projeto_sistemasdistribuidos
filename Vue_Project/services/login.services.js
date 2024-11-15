@@ -7,8 +7,10 @@ class LoginService {
       password: password
     });
   }
+  buscaLogin(userId){
+    return axios.get(`http://localhost:8080/usuario/${userId}`, userId)
+  }
 }
-
 export default new LoginService()
 
 
