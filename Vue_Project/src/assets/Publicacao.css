@@ -3,6 +3,11 @@
     border-color: #d82b2b;
     box-shadow: 0 0 0 4px #b5c9fc;
 }
+.mydict{
+    display: flex;
+    justify-content: space-between ;
+}
+
 
 .mydict div {
     display: flex;

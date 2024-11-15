@@ -16,10 +16,9 @@
         <span class="tooltip-container" v-if="publicacao.verificacao === true">
           <Verify /><span class="tooltip-text">Publicação Verificada!</span>
         </span>
-        <span v-else> Elemento B </span>
+        <span v-else> </span>
       </h2>
     </div>
-    <QuillEditor theme="snow" />
     <p>{{ publicacao.texto }}</p>
     <h3>Comentários</h3>
 
@@ -35,7 +34,7 @@
       <div v-if="isAuthenticated">
         <h3>Adicionar Comentário</h3>
         <form @submit.prevent="enviarComentario">
-          <textarea v-model="novoComentario.desc" required></textarea>
+          <QuillEditor theme="snow" /> 
           <button type="submit">Enviar</button>
         </form>
       </div>
@@ -72,8 +71,10 @@ export default {
       novoComentario: {
         desc: '',
         usuario: {
-          id: '1'
+          id: '5',
+          role: 1
         }
+        
       }
     };
   },
@@ -101,6 +102,7 @@ export default {
   methods: {
     // Método para enviar comentário
     async enviarComentario() {
+      console.log("botao")
       const publicacaoId = this.$route.params.id;
 
       const comentarioPayload = {

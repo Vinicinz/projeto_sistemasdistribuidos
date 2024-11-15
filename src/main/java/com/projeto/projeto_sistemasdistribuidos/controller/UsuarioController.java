@@ -1,5 +1,6 @@
 package com.projeto.projeto_sistemasdistribuidos.controller;
 
+import com.projeto.projeto_sistemasdistribuidos.model.Publicacao;
 import com.projeto.projeto_sistemasdistribuidos.service.UsuarioService;
 import com.projeto.projeto_sistemasdistribuidos.model.Usuario;
 
@@ -23,6 +24,16 @@ public class UsuarioController {
     @GetMapping
     public ResponseEntity<List<Usuario>> listaUsuarios() {
         return ResponseEntity.status(200).body(usuarioservice.listarUsuario());
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Usuario> buscarUsuario(@PathVariable int id) {
+        Usuario usuario = usuarioservice.getUsuarioById(id);
+        if (usuario != null) {
+            return ResponseEntity.status(200).body(usuario);
+        } else {
+            return ResponseEntity.status(404).build();
+        }
     }
 
     @PostMapping
