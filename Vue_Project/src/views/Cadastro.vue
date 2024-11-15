@@ -1,117 +1,98 @@
 <template>
-    <div class="cadastro-container">
-      <h1>Cadastro de Usuário</h1>
-      <form @submit.prevent="submitForm">
-        <div class="form-group">
-          <label for="nome">Nome</label>
-          <input type="text" id="nome" v-model="form.nome" required />
-        </div>
-  
-        <div class="form-group">
-          <label for="cpf">CPF</label>
-          <input
-            type="text"
-            id="cpf"
-            v-model="form.cpf"
-            required
-            @input="formatCPF"
-            @change="validateCPF"
-          />
-          <span v-if="cpfError" class="error">{{ cpfError }}</span>
-        </div>
-  
-        <div class="form-group">
-          <label for="dataNascimento">Data de Nascimento</label>
-          <input type="date" id="dataNascimento" v-model="form.dataNascimento" required />
-        </div>
-  
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" id="email" v-model="form.email" required />
-        </div>
-
-        <div>
-        <label for="password">Senha</label>
-        <input type="password" id="password" v-model="password" required placeholder="Digite sua senha" />
+  <div class="cadastro-container">
+    <h1>Cadastro de Usuário</h1>
+    <form @submit.prevent="submitForm">
+      <div class="form-group">
+        <label for="nome">Usuário</label>
+        <input type="text" id="nome" v-model="login" required />
       </div>
-  
-        <button type="submit" :disabled="cpfError">Cadastrar</button>
-      </form>
-    </div>
-  </template>
-  
-  <script>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" v-model="email" required />
+      </div>
+
+      <div>
+        <label for="password">Senha</label>
+        <input type="password" id="password" v-model= "password" required placeholder="Digite sua senha"/>
+      </div>
+
+      <button @click="cadastrar">Cadastrar</button>
+    </form>
+  </div>
+</template>
+
+<script>
 import cadastroServices from '../../services/cadastro.services';
 
   export default {
     data() {
       return {
-        form: {
-          nome: "",
-          cpf: "",
-          dataNascimento: "",
-          email: ""
-        },
-        cpfError: ""
+        
+          login: "",
+          email: "",
+          password: "",
+          role: 1
+        
       };
     },
     methods: {
-      formatCPF() {
-        let cpf = this.form.cpf.replace(/\D/g, "").slice(0, 11);
-        cpf = cpf.replace(/(\d{3})(\d)/, "$1.$2");
-        cpf = cpf.replace(/(\d{3})(\d)/, "$1.$2");
-        cpf = cpf.replace(/(\d{3})(\d{1,2})$/, "$1-$2");
-        this.form.cpf = cpf;
-      },
-      validateCPF() {
-        const cpf = this.form.cpf.replace(/\D/g, "");
-  
-        if (cpf.length !== 11) {
-          this.cpfError = "CPF deve ter 11 dígitos.";
-          return false;
-        }
-  
-        if (/^(\d)\1+$/.test(cpf)) {
-          this.cpfError = "CPF inválido.";
-          return false;
-        }
-  
-        // Validação CPF
-        let sum = 0;
-        for (let i = 0; i < 9; i++) {
-          sum += parseInt(cpf.charAt(i)) * (10 - i);
-        }
-        let firstVerifier = (sum * 10) % 11;
-        if (firstVerifier === 10) firstVerifier = 0;
-        if (firstVerifier !== parseInt(cpf.charAt(9))) {
-          this.cpfError = "CPF inválido.";
-          return false;
-        }
-  
-        sum = 0;
-        for (let i = 0; i < 10; i++) {
-          sum += parseInt(cpf.charAt(i)) * (11 - i);
-        }
-        let secondVerifier = (sum * 10) % 11;
-        if (secondVerifier === 10) secondVerifier = 0;
-        if (secondVerifier !== parseInt(cpf.charAt(10))) {
-          this.cpfError = "CPF inválido.";
-          return false;
-        }
-  
-        this.cpfError = ""; 
-        return true;
-      },
-      async submitForm() {
-        if (this.cpfError) {
-          alert("Por favor, corrija o CPF antes de enviar.");
-          return;
-        }
-  
-        this.loading = true;
+    //   formatCPF() {
+    //     let cpf = this.form.cpf.replace(/\D/g, "").slice(0, 11);
+    //     cpf = cpf.replace(/(\d{3})(\d)/, "$1.$2");
+    //     cpf = cpf.replace(/(\d{3})(\d)/, "$1.$2");
+    //     cpf = cpf.replace(/(\d{3})(\d{1,2})$/, "$1-$2");
+    //     this.form.cpf = cpf;
+    //   },
+    //   validateCPF() {
+    //     const cpf = this.form.cpf.replace(/\D/g, "");
 
-try {
-  const response = await cadastroServices("", this.form);
+    //     if (cpf.length !== 11) {
+    //       this.cpfError = "CPF deve ter 11 dígitos.";
+    //       return false;
+    //     }
+
+    //     if (/^(\d)\1+$/.test(cpf)) {
+    //       this.cpfError = "CPF inválido.";
+    //       return false;
+    //     }
+
+    //     // Validação CPF
+    //     let sum = 0;
+    //     for (let i = 0; i < 9; i++) {
+    //       sum += parseInt(cpf.charAt(i)) * (10 - i);
+    //     }
+    //     let firstVerifier = (sum * 10) % 11;
+    //     if (firstVerifier === 10) firstVerifier = 0;
+    //     if (firstVerifier !== parseInt(cpf.charAt(9))) {
+    //       this.cpfError = "CPF inválido.";
+    //       return false;
+    //     }
+
+    //     sum = 0;
+    //     for (let i = 0; i < 10; i++) {
+    //       sum += parseInt(cpf.charAt(i)) * (11 - i);
+    //     }
+    //     let secondVerifier = (sum * 10) % 11;
+    //     if (secondVerifier === 10) secondVerifier = 0;
+    //     if (secondVerifier !== parseInt(cpf.charAt(10))) {
+    //       this.cpfError = "CPF inválido.";
+    //       return false;
+    //     }
+
+    //     this.cpfError = "";
+    //     return true;
+    //   },
+    //   async submitForm() {
+    //     if (this.cpfError) {
+    //       alert("Por favor, corrija o CPF antes de enviar.");
+    //       return;
+    //     }
+
+async cadastrar () {
+    try {
+  const response = await cadastroServices.cadastro(this.email, this.login, this.password, this.role);
+  console.log(response.data);
   alert("Cadastro realizado com sucesso!");
 
   // Redireciona para a página de login
@@ -120,15 +101,14 @@ try {
   console.error("Erro ao cadastrar:", error.response || error);
   alert("Erro ao realizar o cadastro. Tente novamente.");
 } finally {
-  this.loading = false; 
+  this.loading = false;
 }
       }
     }
   };
-  </script>
-  
-  <style scoped>
+</script>
 
+<style scoped>
 .cadastro-container {
   max-width: 400px;
   margin: 0 auto;

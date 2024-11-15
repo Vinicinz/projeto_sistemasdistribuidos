@@ -1,18 +1,18 @@
 import axios from 'axios'
 
-class CadastroService {
-  cadastro ( nome, data, cpf, email, password ) {
-    return axios.post(`http://localhost:8080/auth/login`, {
-        nome: nome,
-        data: data,
+class CadastroServices {
+  cadastro ( email, login, password, role ) {
+    return axios.post(`http://localhost:8080/auth/register`, {
+        login: login,
         email: email,
-      password: password
+        password: password,
+        role: role
 
     });
   }
 }
 
-export default new CadastroService()
+export default new CadastroServices()
 
 
 
