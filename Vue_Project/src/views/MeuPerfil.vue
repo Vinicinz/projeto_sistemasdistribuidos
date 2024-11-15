@@ -60,16 +60,29 @@
         </div>
       </div>
     </div>
+
+    <div>
+      <div v-if="isAuthenticated">Bem-vindo! <button @click="logout">Sair</button></div>
+      <div v-else><router-link to="/login">Faça login</router-link></div>
+    </div>
+
+
   </template>
   
   <script>
   import axios from "axios";
   import { QuillEditor } from '@vueup/vue-quill';
   import '@vueup/vue-quill/dist/vue-quill.snow.css';
+  import { isAuthenticated } from '@/router/auth';
 
 
   
   export default {
+    computed: {
+      isAuthenticated() {
+        return isAuthenticated();
+      }
+    },
     components: {
      QuillEditor
   },
@@ -173,6 +186,11 @@
           this.loadingPost = false;
         }
       },
+      logout() {
+        localStorage.removeItem('token');
+        localStorage.removeItem('userId')
+        this.$router.push('/login');
+      }
     },
   };
   </script>

@@ -1,19 +1,26 @@
 <!-- Cabeçalho  mostrando o titulo e criando rotas para cada elemento-->
 <template>
-    <div class="header">
-      <div class="titulo" role="header">
-        <a href=""><RouterLink to="/">BACKDOOR</RouterLink></a>
-        <div class="cabecalho">
-          <li><a href=""><RouterLink to="/artigo">Artigos</RouterLink></a></li>
-          <li><a href=""><RouterLink to="/forum">Fórum</RouterLink></a></li>
-          <li><a href=""><RouterLink to="/sobreNos">Sobre Nós</RouterLink></a></li>
-
-        </div>
+  <div class="header">
+    <div class="titulo" role="header">
+      <a href="">
+        <RouterLink to="/">BACKDOOR</RouterLink>
+      </a>
+      <div class="cabecalho">
+        <li><a href="">
+            <RouterLink to="/artigo">Artigos</RouterLink>
+          </a></li>
+        <li><a href="">
+            <RouterLink to="/forum">Fórum</RouterLink>
+          </a></li>
+        <li><a href="">
+            <RouterLink to="/sobreNos">Sobre Nós</RouterLink>
+          </a></li>
       </div>
     </div>
 
+
     <div v-if="isAuthenticated" class="cadastro2" role="navigation">
-      <RouterLink to="/user" >
+      <RouterLink to="/user">
         <profile />
         <div>
           <span class="nickname"> {{ usuario ? usuario.login : 'Usuário' }} </span>
@@ -30,6 +37,7 @@
         </a></button>
     </div>
 
+  </div>
 </template>
 
 
