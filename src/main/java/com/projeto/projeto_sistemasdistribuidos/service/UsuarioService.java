@@ -1,5 +1,6 @@
 package com.projeto.projeto_sistemasdistribuidos.service;
 
+import com.projeto.projeto_sistemasdistribuidos.model.Publicacao;
 import com.projeto.projeto_sistemasdistribuidos.repository.UsuarioRepository;
 import com.projeto.projeto_sistemasdistribuidos.model.Usuario;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -38,6 +39,11 @@ public class UsuarioService implements UserDetailsService {
     public Boolean excluirUsuario(Integer id) {
         repository.deleteById(id);
         return true;
+    }
+
+    public Usuario getUsuarioById(Integer id) {
+        return repository.findById(id)
+                .orElse(null);
     }
 
     @Override
