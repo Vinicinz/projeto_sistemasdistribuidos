@@ -3,6 +3,7 @@ import HomeView from '../views/HomeView.vue'
 import PublicacaoView from '@/views/PublicacaoView.vue'
 import Login from '../views/Login.vue'
 import ForumView from '@/views/ForumView.vue'
+import CriarPostagemView from '@/views/CriarPostagemView.vue'
 
 
 // Rotas chamando o componente especifico de cada um.
@@ -33,6 +34,11 @@ const router = createRouter({
       component: ForumView,
       meta : { requerisAuth: true}      
     
+    },
+    {
+      path: '/criarPub',
+      name: 'criarPub',
+      component: CriarPostagemView
     }
 
   ]
