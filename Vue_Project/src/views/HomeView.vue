@@ -9,6 +9,10 @@
           <Fire /> Do Momento
         </span></label>
     </div>
+    <div>
+      <button name="radio"><a href="/criarPub"><span> Nova Publicação</span></a></button>
+
+    </div>
   </div>
   <div class="post-container">
     <div class="post" v-for="publicacao in publicacoes" :key="publicacao.id">
