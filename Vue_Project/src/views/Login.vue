@@ -20,6 +20,8 @@
 
 <script>
 import loginServices from '../../services/login.services';
+import { jwtDecode } from 'jwt-decode';
+
 
 export default {
   data() {
@@ -38,7 +40,23 @@ export default {
 
         if (response.status === 200) {
           const token = response.data.token;
-          localStorage.setItem('token', token); 
+          localStorage.setItem('token', token);
+          console.log(token)
+
+
+          // Decodificar o token para pegar o ID do usuário
+          const decodedToken = jwtDecode(token);
+          const userId = decodedToken.userId;  // Supondo que o ID do usuário está no campo "sub" do token
+        
+          console.log(decodedToken)
+          console.log(userId)
+
+
+          // Armazenar apenas o ID do usuário no localStorage
+          localStorage.setItem('userId', userId);
+
+
+
           this.$router.push('/');
 
         } else {

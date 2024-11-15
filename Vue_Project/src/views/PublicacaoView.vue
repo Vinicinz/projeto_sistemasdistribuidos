@@ -16,7 +16,7 @@
         <span class="tooltip-container" v-if="publicacao.verificacao === true">
           <Verify /><span class="tooltip-text">Publicação Verificada!</span>
         </span>
-        <span v-else> Elemento B </span>
+        <span v-else> </span>
       </h2>
     </div>
     <QuillEditor theme="snow" />
