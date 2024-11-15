@@ -6,6 +6,7 @@ import ForumView from '@/views/ForumView.vue'
 import Cadastro from '@/views/Cadastro.vue'
 // import MeuPerfil from '@/views/MeuPerfil.vue'
 
+import CriarPostagemView from '@/views/CriarPostagemView.vue'
 
 
 // Rotas chamando o componente especifico de cada um.
@@ -43,6 +44,11 @@ const router = createRouter({
       component: ForumView,
       meta : { requerisAuth: true}      
     
+    },
+    {
+      path: '/criarPub',
+      name: 'criarPub',
+      component: CriarPostagemView
     }
 
   ]

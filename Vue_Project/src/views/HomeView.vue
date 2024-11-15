@@ -9,6 +9,10 @@
           <Fire /> Do Momento
         </span></label>
     </div>
+    <div>
+      <button name="radio"><a href="/criarPub"><span> Nova Publicação</span></a></button>
+
+    </div>
   </div>
   <div class="post-container">
     <div class="post" v-for="publicacao in publicacoes" :key="publicacao.id">
@@ -25,7 +29,7 @@
             <span class="tooltip-container" v-if="publicacao.verificacao === true">
               <Verify /><span class="tooltip-text">Publicação Verificada!</span>
             </span>
-            <span v-else> Elemento B </span>
+            <span v-else> </span>
 
           </h4>
           <p>{{ publicacao.texto }}</p>
