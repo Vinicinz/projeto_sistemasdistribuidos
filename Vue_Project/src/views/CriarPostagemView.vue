@@ -109,51 +109,117 @@ export default {
     }
 };
 </script>
-
 <style scoped>
+body {
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(to bottom, #f8f9fa, #e9ecef); /* Fundo em tons claros */
+  color: #495057; /* Texto em cinza escuro */
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
 .nova-publicacao-container {
-    max-width: 500px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    background-color: #f9f9f9;
+  width: 600px;
+  padding: 30px;
+  background: #ffffff; /* Fundo branco */
+  border: 1px solid #dee2e6; /* Borda leve */
+  border-radius: 15px; /* Bordas arredondadas */
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+.nova-publicacao-container h2 {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #343a40; /* Cinza escuro */
+  border-bottom: 2px solid #6c757d; /* Linha separadora */
+  padding-bottom: 10px;
 }
 
 .form-group {
-    margin-bottom: 15px;
+  margin-bottom: 20px;
 }
 
-label {
-    display: block;
-    margin-bottom: 5px;
+.form-group label {
+  display: block;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #495057; /* Cinza escuro */
+  margin-bottom: 8px;
 }
 
-input[type="text"],
-input[type="number"],
-input[type="date"],
-textarea {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group input[type="password"],
+.form-group input[type="email"],
+.form-group textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ced4da;
+  border-radius: 8px;
+  font-size: 1rem;
+  background: #f8f9fa; /* Fundo claro */
+  transition: all 0.3s ease;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="number"]:focus,
+.form-group input[type="password"]:focus,
+.form-group input[type="email"]:focus,
+.form-group textarea:focus {
+  border-color: #6c757d; /* Cor de borda ao focar */
+  outline: none;
+  background: #ffffff; /* Fundo mais claro */
+}
+
+.form-group input[type="checkbox"] {
+  margin-right: 10px;
 }
 
 button {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+  width: 100%;
+  padding: 12px;
+  background-color: #6c757d; /* Cinza escuro */
+  color: #fff; /* Texto branco */
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 button:hover {
-    background-color: #0056b3;
+  background-color: #8b0909; /* Tom mais escuro no hover */
+  transform: translateY(-2px);
+}
+
+button:active {
+  transform: translateY(0);
 }
 
 .error-message {
-    color: red;
-    margin-top: 10px;
+  color: #dc3545; /* Vermelho para mensagem de erro */
+  font-size: 0.9rem;
+  margin-top: 15px;
+}
+
+@media (max-width: 768px) {
+  .nova-publicacao-container {
+    width: 90%;
+    padding: 20px;
+  }
+
+  .nova-publicacao-container h2 {
+    font-size: 1.5rem;
+  }
+
+  button {
+    font-size: 0.9rem;
+  }
 }
 </style>
