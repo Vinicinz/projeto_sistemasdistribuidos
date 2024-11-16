@@ -12,8 +12,7 @@
 
             <div class="form-group">
                 <label for="texto">Texto:</label>
-                <textarea id="texto" v-model="novaPublicacao.texto" placeholder="Digite o texto da publicação"
-                    required></textarea>
+                <QuillEditor theme="snow" /> 
             </div>
 
             <div class="form-group">
@@ -37,8 +36,14 @@
 
 <script>
 import PublicacaoService from '../../services/PublicacaoService';
+import { QuillEditor } from '@vueup/vue-quill'
+import '@vueup/vue-quill/dist/vue-quill.snow.css';
 
 export default {
+    components: {
+         QuillEditor
+    },
+
     data() {
         return {
             novaPublicacao: {
