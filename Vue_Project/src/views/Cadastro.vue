@@ -1,20 +1,20 @@
 <template>
   <div class="cadastro-container">
-    <h1>Cadastro de Usuário</h1>
+    <h2>Cadastro de Usuário</h2>
     <form @submit.prevent="submitForm">
-      <div class="form-group">
+      <div>
         <label for="nome">Usuário</label>
-        <input type="text" id="nome" v-model="login" required />
+        <input type="text" id="nome" v-model="login" required placeholder="Digite seu nome de usuário" />
       </div>
 
-      <div class="form-group">
+      <div>
         <label for="email">Email</label>
-        <input type="email" id="email" v-model="email" required />
+        <input type="email" id="email" v-model="email" required placeholder="Digite seu email" />
       </div>
 
       <div>
         <label for="password">Senha</label>
-        <input type="password" id="password" v-model= "password" required placeholder="Digite sua senha"/>
+        <input type="password" id="password" v-model="password" required placeholder="Digite sua senha" />
       </div>
 
       <button @click="cadastrar">Cadastrar</button>
@@ -109,89 +109,111 @@ async cadastrar () {
 </script>
 
 <style scoped>
+body {
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(to bottom right, #dcd9d9, #dedede); /* Fundo em tons de vermelho suave */
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}
+
 .cadastro-container {
-  max-width: 400px;
-  margin: 0 auto;
-  padding: 40px 30px;
-  border-radius: 12px;
-  background: rgba(71, 2, 182, 0.1);
-  backdrop-filter: blur(10px);
-  box-shadow: 0px 4px 12px rgba(15, 5, 75, 0.2);
+  width: 400px;
+  padding: 40px;
+  background: rgba(204, 204, 204, 0.95); /* Fundo claro translúcido com tom rosado */
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  backdrop-filter: blur(8px);
   text-align: center;
-  color: #6f05fa;
+  color: #8b0909; /* Texto em vermelho mais escuro */
+  border: 1px solid #e3e3e3; /* Borda em vermelho clarinho */
 }
 
-.profile-icon {
-  border-radius: 50%;
-  width: 80px;
-  height: 80px;
-  background: rgba(42, 5, 248, 0.2);
-  padding: 10px;
-  margin: 0 auto 20px;
+.cadastro-container h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #b71c1c; /* Título em vermelho escuro */
 }
 
-.profile-icon img {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
+.cadastro-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
-label {
+.cadastro-container label {
   display: block;
   text-align: left;
+  font-size: 1rem;
+  color: #b71c1c; /* Labels em vermelho escuro */
   margin-bottom: 5px;
-  color: rgba(0, 4, 255, 0.8);
+}
+
+.cadastro-container input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #8b0909; /* Borda em vermelho claro */
+  border-radius: 8px;
+  background-color: rgba(236, 236, 236, 0.7); /* Fundo claro translúcido */
+  color: #000000; /* Texto em vermelho */
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.cadastro-container input:focus {
+  border-color: #000000; /* Destaque em vermelho médio */
+  background-color: rgba(254, 254, 254, 0.9); /* Fundo levemente mais claro no foco */
+}
+
+.cadastro-container input::placeholder {
+  color: rgba(118, 118, 118, 0.7); /* Placeholder em tom suave de vermelho */
   font-size: 0.9rem;
 }
 
-input {
+.cadastro-container button {
   width: 100%;
-  padding: 10px;
-  margin-bottom: 15px;
-  border: none;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-  background: transparent;
-  color: #000000;
-  font-size: 0.95rem;
-}
-
-input::placeholder {
-  color: rgba(80, 46, 172, 0.7);
-}
-
-button {
-  width: 100%;
-  padding: 10px;
-  background-color: #8a5fd1;
-  color: #333;
-  border: none;
-  border-radius: 20px;
+  padding: 12px;
+  background-color: #8b0909; /* Botão em vermelho médio */
+  color: #fff; /* Texto branco */
+  font-size: 1rem;
   font-weight: bold;
+  border: none;
+  border-radius: 8px;
   cursor: pointer;
-  margin-top: 10px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-button:hover {
-  background-color: rgba(204, 156, 231, 0.9);
+.cadastro-container button:hover {
+  background-color: #b71c1c; /* Botão mais escuro no hover */
+  transform: translateY(-2px);
 }
 
-.register {
-  margin-top: 20px;
-}
-
-.register a {
-  color: rgba(161, 125, 230, 0.9);
-  font-size: 0.9rem;
-  font-weight: bold;
-  text-decoration: none;
-}
-
-.register a:hover {
-  text-decoration: underline;
+.cadastro-container button:active {
+  transform: translateY(0);
 }
 
 .error {
-  color: red;
+  color: #d32f2f; /* Mensagem de erro em vermelho intenso */
+  font-size: 0.9rem;
   margin-top: 10px;
+}
+
+@media (max-width: 480px) {
+  .cadastro-container {
+    width: 90%;
+    padding: 30px;
+  }
+
+  .cadastro-container h2 {
+    font-size: 1.8rem;
+  }
+
+  .cadastro-container input {
+    font-size: 0.9rem;
+  }
 }
 </style>
