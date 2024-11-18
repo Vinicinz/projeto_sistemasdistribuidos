@@ -1,7 +1,7 @@
 <template>
   <div class="perfil-container">
     <h1>Meu Perfil</h1>
-    
+
     <!-- Foto de perfil e login -->
     <div class="foto-perfil" v-if="login">
       <img :src="login.profilePicture || 'https://via.placeholder.com/120'" alt="Foto de perfil" />
@@ -27,10 +27,9 @@
     </div>
   </div>
 
-<div>
-      <div v-if="isAuthenticated">Bem-vindo! <button @click="logout">Sair</button></div>
-      <div v-else><router-link to="/login">Faça login</router-link></div>
-    </div>
+  <div>
+    <div v-if="isAuthenticated"><button @click="logout">Clique aqui para Sair</button></div>
+  </div>
 
 </template>
 <script>
@@ -60,10 +59,13 @@ export default {
 
   methods: {
     logout() {
-        localStorage.removeItem('token');
-        localStorage.removeItem('userId')
-        this.$router.push('/login');
-      },
+      localStorage.removeItem('token');
+      localStorage.removeItem('userId')
+      this.$router.push('/login').then(() => {
+        window.location.reload();
+      });
+
+    },
 
     async carregarPerfil() {
       try {
@@ -115,11 +117,24 @@ h1 {
   padding-bottom: 10px;
 }
 
+button {
+  background-color: #8b0909;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 1em;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
 /* Foto de Perfil e Nome */
 .foto-perfil {
   text-align: center;
   margin-bottom: 20px;
 }
+
 .foto-perfil img {
   width: 100px;
   height: 100px;
@@ -128,6 +143,7 @@ h1 {
   border: 3px solid #8b0909;
   margin-bottom: 10px;
 }
+
 .foto-perfil h2 {
   font-size: 1.8em;
   color: #8b0909;
@@ -145,6 +161,7 @@ h1 {
 .meus-posts {
   margin-top: 20px;
 }
+
 .meus-posts h2 {
   font-size: 1.6em;
   color: #333;
@@ -152,6 +169,7 @@ h1 {
   border-bottom: 2px solid #ddd;
   padding-bottom: 10px;
 }
+
 .post {
   background-color: #ffffff;
   border: 1px solid #ddd;
@@ -161,21 +179,25 @@ h1 {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }
+
 .post:hover {
   transform: translateY(-5px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
+
 .post h3 {
   font-size: 1.4em;
   color: #8b0909;
   margin-bottom: 10px;
 }
+
 .post p {
   font-size: 1em;
   color: #555;
   line-height: 1.6;
   margin-bottom: 15px;
 }
+
 .interacoes {
   margin-top: 10px;
   font-size: 0.9em;
@@ -190,9 +212,11 @@ h1 {
   .perfil-container {
     padding: 15px;
   }
+
   h1 {
     font-size: 1.6em;
   }
+
   .foto-perfil h2 {
     font-size: 1.4em;
   }
@@ -221,17 +245,19 @@ h1 {
   cursor: pointer;
   transition: all 0.3s ease;
 }
+
 .logout-button:hover {
   background-color: #a05645;
   transform: scale(1.05);
 }
+
 .logout-button:active {
   background-color: #6d0707;
   transform: scale(1);
 }
+
 .logout-button:focus {
   outline: 2px solid #8b0909;
   outline-offset: 2px;
 }
-
 </style>

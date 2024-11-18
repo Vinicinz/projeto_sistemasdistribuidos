@@ -9,9 +9,8 @@
           <Fire /> Do Momento
         </span></label>
     </div>
-    <div>
-      <button name="radio"><a href="/criarPub"><span> Nova Publicação</span></a></button>
-
+    <div >
+      <button class="botao-criar" name="radio"><a href="/criarPub">Nova Publicação</a></button>
     </div>
   </div>
   <div class="post-container">
