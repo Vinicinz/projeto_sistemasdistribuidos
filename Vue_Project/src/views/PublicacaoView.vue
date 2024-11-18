@@ -34,7 +34,7 @@
       <div v-if="isAuthenticated">
         <h3>Adicionar Comentário</h3>
         <form @submit.prevent="enviarComentario">
-          <QuillEditor theme="snow" /> 
+          <QuillEditor v-model="novoComentario.desc" ref="editor" theme="snow" @text-change="onEditorChange" />
           <button type="submit">Enviar</button>
         </form>
       </div>
@@ -71,10 +71,12 @@ export default {
       novoComentario: {
         desc: '',
         usuario: {
-          id: '5',
-          role: 1
+          id: null,
+          role: '1'
+        },
+        publicacao: {
+          id: null
         }
-        
       }
     };
   },
@@ -82,8 +84,6 @@ export default {
   // Chamada da publicação e dos comentarios pelo Id das publicações 
   async mounted() {
     const publicacaoId = this.$route.params.id;
-    console.log(publicacaoId)
-
     try {
       // Buscar publicação pelo ID
       const publicacaoResponse = await artigoServices.getArtigo(publicacaoId);
@@ -97,23 +97,23 @@ export default {
     }
   },
 
-  // Metodo para enviar comentario, ele armazena o id da publicação e cria uma desc baseado 
-  // no que o usuario digitar no textarea, 
   methods: {
-    // Método para enviar comentário
+    onEditorChange() {
+      const editorContent = this.$refs.editor.getText().trim();
+      this.novoComentario.desc = editorContent || 'falha';
+    },
     async enviarComentario() {
-      console.log("botao")
       const publicacaoId = this.$route.params.id;
-
-      const comentarioPayload = {
-        ...this.novoComentario,
-        publicacao: { id: publicacaoId }
-      };
+      const userId = localStorage.getItem('userId');
 
       try {
-        const response = await ArtigosService.enviarComentario(comentarioPayload);
-        this.comentarios.push(response.data); // Adiciona o novo comentário na lista
-        this.novoComentario.desc = ''; // Limpa o campo de texto
+        this.novoComentario.usuario.id = userId;
+        this.novoComentario.publicacao.id = publicacaoId;
+
+        const response = await artigoServices.enviarComentario(this.novoComentario);
+        window.location.reload();
+
+
       } catch (error) {
         console.error('Erro ao enviar comentário:', error);
       }
