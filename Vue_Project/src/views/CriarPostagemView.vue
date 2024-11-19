@@ -57,7 +57,7 @@ export default {
   methods: {
     getDataAtual() {
       const agora = new Date();
-      return agora.toLocaleString('sv-SE').replace(' ', 'T');  // Formato similar ao ISO
+      return agora.toLocaleString('sv-SE').replace(' ', 'T'); 
     },
     onEditorChange() {
       const editorContent = this.$refs.editor.getText().trim();
@@ -65,7 +65,7 @@ export default {
     },
     async enviarPublicacao() {
       try {
-        const userId = localStorage.getItem('userId');  // Ou pode ser obtido via decodeJWT, se preferir
+        const userId = localStorage.getItem('userId');  
 
         if (!userId) {
           this.errorMessage = 'Usuário não está logado!';
@@ -73,28 +73,15 @@ export default {
         }
 
         this.novaPublicacao.dataPublicacao = this.getDataAtual();
-        this.novaPublicacao.usuario.id = userId; // Adiciona o userId ao campo 'usuario.id'
+        this.novaPublicacao.usuario.id = userId; 
 
 
         const response = await PublicacaoService.criarPublicacao(this.novaPublicacao);
         console.log('Publicação criada com sucesso:', response);
         alert('Publicação criada com sucesso!');
+        
+        this.errorMessage = ''; 
 
-        // Limpar o formulário após sucesso
-        this.novaPublicacao = {
-          texto: '',
-          dataPublicacao: '',
-          verificacao: false,
-          titulo: '',
-          usuario: {
-            id: null,
-            role: '1'
-          },
-          categoria: {
-            id: null
-          }
-        };
-        this.errorMessage = ''; // Limpar mensagem de erro
       } catch (error) {
         this.errorMessage = 'Erro ao criar a publicação. Verifique os dados.';
         console.error('Erro:', error);
@@ -109,9 +96,7 @@ export default {
 body {
   font-family: 'Arial', sans-serif;
   background: linear-gradient(to bottom, #f8f9fa, #e9ecef);
-  /* Fundo em tons claros */
   color: #495057;
-  /* Texto em cinza escuro */
   margin: 0;
   padding: 0;
   display: flex;
@@ -127,13 +112,9 @@ body {
   width: 600px;
   padding: 30px;
   background: #ffffff;
-  /* Fundo branco */
   border: 1px solid #dee2e6;
-  /* Borda leve */
   border-radius: 15px;
-  /* Bordas arredondadas */
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
-  /* Sombra suave */
 }
 
 .nova-publicacao-container h2 {
@@ -141,9 +122,7 @@ body {
   font-weight: bold;
   margin-bottom: 20px;
   color: #343a40;
-  /* Cinza escuro */
   border-bottom: 2px solid #6c757d;
-  /* Linha separadora */
   padding-bottom: 10px;
 }
 
@@ -156,7 +135,6 @@ body {
   font-size: 1rem;
   font-weight: 600;
   color: #495057;
-  /* Cinza escuro */
   margin-bottom: 8px;
 }
 
@@ -171,7 +149,6 @@ body {
   border-radius: 8px;
   font-size: 1rem;
   background: #f8f9fa;
-  /* Fundo claro */
   transition: all 0.3s ease;
 }
 
@@ -181,10 +158,8 @@ body {
 .form-group input[type="email"]:focus,
 .form-group textarea:focus {
   border-color: #6c757d;
-  /* Cor de borda ao focar */
   outline: none;
   background: #ffffff;
-  /* Fundo mais claro */
 }
 
 .form-group input[type="checkbox"] {
@@ -195,9 +170,7 @@ button {
   width: 100%;
   padding: 12px;
   background-color: #6c757d;
-  /* Cinza escuro */
   color: #fff;
-  /* Texto branco */
   font-size: 1rem;
   font-weight: bold;
   border: none;
@@ -208,7 +181,6 @@ button {
 
 button:hover {
   background-color: #8b0909;
-  /* Tom mais escuro no hover */
   transform: translateY(-2px);
 }
 
@@ -218,7 +190,6 @@ button:active {
 
 .error-message {
   color: #dc3545;
-  /* Vermelho para mensagem de erro */
   font-size: 0.9rem;
   margin-top: 15px;
 }

@@ -38,7 +38,6 @@
   </div>
 </template>
 
-<!-- iniciando componentes de icones -->
 <script>
 import ArrowUp from '@/components/icons/arrow-up.vue';
 import Clock from '@/components/icons/clock.vue';
@@ -60,11 +59,10 @@ export default {
     };
   },
 
-  // Chamando o EndPoint do Back e armazenando em publicacoes
   async mounted() {
     try {
-      const response = await artigoServices.getPublicacoes(); // Usando o serviço para fazer a requisição
-      this.publicacoes = response.data; // Armazenando os dados no data
+      const response = await artigoServices.getPublicacoes(); 
+      this.publicacoes = response.data; 
     } catch (error) {
       console.error('Erro ao buscar dados:', error);
     }

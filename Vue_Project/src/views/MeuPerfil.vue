@@ -42,9 +42,9 @@ export default {
   name: "MeuPerfil",
   data() {
     return {
-      login: null, // Dados do usuário com login
+      login: null,
       userId: localStorage.getItem("userId") || "",
-      pub: [], // Publicações do usuário
+      pub: [],
     };
   },
   computed: {
@@ -69,14 +69,9 @@ export default {
 
     async carregarPerfil() {
       try {
-        // Buscar os dados do usuário
         const response = await loginServices.buscaLogin(this.userId);
-        console.log("Dados do usuário:", response.data); // Verifique se login está presente
-        this.login = response.data; // Armazena os dados retornados, incluindo o login
-
-        // Buscar as publicações do usuário
-        // const responsePosts = await PublicacaoService.getPublicacoes(this.userId);
-        // this.pub = responsePosts.data; // Armazena as publicações
+        console.log("Dados do usuário:", response.data);
+        this.login = response.data; 
       } catch (error) {
         console.error("Erro ao carregar o perfil:", error);
         alert("Erro ao carregar os dados do perfil.");
@@ -95,7 +90,6 @@ export default {
 
 </script>
 <style scoped>
-/* Container Principal */
 .perfil-container {
   max-width: 800px;
   margin: 0 auto;
@@ -107,7 +101,6 @@ export default {
   font-family: 'Roboto', sans-serif;
 }
 
-/* Título Principal */
 h1 {
   text-align: center;
   font-size: 2em;
@@ -130,7 +123,6 @@ button {
   transition: all 0.3s;
 }
 
-/* Foto de Perfil e Nome */
 .foto-perfil {
   text-align: center;
   margin-bottom: 20px;
@@ -151,14 +143,12 @@ button {
   margin: 0;
 }
 
-/* Divisória */
 .divisao {
   border: none;
   border-top: 2px solid #ddd;
   margin: 20px 0;
 }
 
-/* Minhas Publicações */
 .meus-posts {
   margin-top: 20px;
 }
@@ -208,7 +198,6 @@ button {
   font-style: italic;
 }
 
-/* Responsividade */
 @media (max-width: 768px) {
   .perfil-container {
     padding: 15px;
@@ -223,7 +212,6 @@ button {
   }
 }
 
-/* Container para o botão e mensagem */
 .auth-container {
   display: flex;
   align-items: center;
@@ -234,7 +222,6 @@ button {
   margin-bottom: 20px;
 }
 
-/* Estilo do botão "Sair" */
 .logout-button {
   background-color: #8b0909;
   color: #fff;

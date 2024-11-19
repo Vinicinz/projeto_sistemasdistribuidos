@@ -47,7 +47,6 @@
 </template>
 
 <script>
-// Armazenando dados da API
 import Verify from '@/components/icons/verify.vue';
 import { QuillEditor } from '@vueup/vue-quill'
 import '@vueup/vue-quill/dist/vue-quill.snow.css';
