@@ -2,6 +2,7 @@ package com.projeto.projeto_sistemasdistribuidos.model;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -17,7 +18,7 @@ public class Publicacao {
     private String texto;
 
     @Column(name = "PUB_DAT_DATAPUBLI")
-    private Date dataPublicacao;
+    private LocalDateTime dataPublicacao;
 
     @Column(name = "PUB_BOO_VERIF")
     private boolean verificacao;
@@ -50,11 +51,11 @@ public class Publicacao {
         this.texto = texto;
     }
 
-    public Date getDataPublicacao() {
+    public LocalDateTime getDataPublicacao() {
         return dataPublicacao;
     }
 
-    public void setDataPublicacao(Date dataPublicacao) {
+    public void setDataPublicacao(LocalDateTime dataPublicacao) {
         this.dataPublicacao = dataPublicacao;
     }
 
