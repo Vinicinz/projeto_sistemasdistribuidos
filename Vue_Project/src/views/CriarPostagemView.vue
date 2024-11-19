@@ -47,7 +47,7 @@ export default {
           role: '1'
         },
         categoria: {
-          id: 2
+          id: 1
         }
       },
       errorMessage: ''
@@ -57,7 +57,7 @@ export default {
   methods: {
     getDataAtual() {
       const agora = new Date();
-      return agora.toISOString(); // Formato padrão ISO 8601, usado para data e hora
+      return agora.toLocaleString('sv-SE').replace(' ', 'T');  // Formato similar ao ISO
     },
     onEditorChange() {
       const editorContent = this.$refs.editor.getText().trim();

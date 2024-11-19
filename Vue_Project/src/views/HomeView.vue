@@ -1,15 +1,12 @@
 <!-- Componente central do site, onde aparecem as publicações -->
 <template>
   <div class="mydict">
-    <div><label><input type="radio" name="radio" checked=""><span>
-          <Clock /> Novo
-        </span></label>
+    <div>
+      <label><input type="radio" name="radio" checked=""><span><Clock /> Novo</span></label>
       <label><input type="radio" name="radio"><span><arrow-up /> Top</span></label>
-      <label> <input type="radio" name="radio"><span>
-          <Fire /> Do Momento
-        </span></label>
+      <label> <input type="radio" name="radio"><span><Fire /> Do Momento</span></label>
     </div>
-    <div >
+    <div>
       <button class="botao-criar" name="radio"><a href="/criarPub">Nova Publicação</a></button>
     </div>
   </div>
