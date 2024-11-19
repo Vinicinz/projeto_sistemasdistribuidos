@@ -17,9 +17,9 @@ import { RouterLink, RouterView } from 'vue-router'
     </div>
   </main>
 
-  <!-- <div class="chatbot-container">
+  <div class="chatbot-container">
     <ChatBot />
-  </div> -->
+  </div>
 </template>
 
 <!-- Script dos componentes -->

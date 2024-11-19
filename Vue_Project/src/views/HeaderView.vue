@@ -63,12 +63,12 @@ export default {
     };
   },
   async mounted() {
-    this.pegarNome();  // Corrigido: chamando o método com 'this'
+    this.pegarNome(); 
   },
   methods: {
 
     async pegarNome() {
-      const userId = this.userId;  // Obtém o userId do data
+      const userId = this.userId;  
 
       if (!userId) {
         console.error('Usuário não está logado ou o ID não está no localStorage');
@@ -77,8 +77,8 @@ export default {
 
       try {
         const response = await loginServices.buscaLogin(userId);
-        this.usuario = response.data; // Agora o 'usuario' é atribuído com os dados da API
-        this.login = usuario.login;  // Armazenando o login do usuário no estado do componente
+        this.usuario = response.data;
+        this.login = usuario.login;  
 
       } catch (error) {
         console.error('Erro ao buscar nome do usuário:', error);

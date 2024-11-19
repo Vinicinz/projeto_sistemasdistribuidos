@@ -15,11 +15,13 @@ class ArtigosService {
 
   // Enviar um novo comentário
   enviarComentario(comentarioPayload) {
-    return axios.post('http://localhost:8080/comentario', comentarioPayload, {
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    });
+    try {
+      const response = axios.post('http://localhost:8080/comentario', comentarioPayload);
+      return response.data;
+    } catch (error) {
+      console.error('Erro ao criar comentario:', error);
+      throw error;
+    }
   }
 }
 

@@ -34,8 +34,18 @@ public class PublicacaoService {
         return true;
     }
     public Publicacao getPublicacaoById(Integer id) {
-        return repository.findById(id)
-                .orElse(null);
+        return repository.findById(id).orElse(null);
     }
+
+    public List<Publicacao> buscarPublicacoesPorUsuario(Integer usuarioId) {
+        return repository.findByUsuarioId(usuarioId);
+    }
+    public List<Publicacao> listarPorCategoria(Integer categoriaId) {
+        return repository.findByCategoriaId(categoriaId);
+    }
+    public List<Publicacao> listarPorData() {
+        return repository.findrByDataPublicacaoDesc();
+    }
+
 
 }

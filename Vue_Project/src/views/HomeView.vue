@@ -1,17 +1,13 @@
 <!-- Componente central do site, onde aparecem as publicações -->
 <template>
   <div class="mydict">
-    <div><label><input type="radio" name="radio" checked=""><span>
-          <Clock /> Novo
-        </span></label>
+    <div>
+      <label><input type="radio" name="radio" checked=""><span><Clock /> Novo</span></label>
       <label><input type="radio" name="radio"><span><arrow-up /> Top</span></label>
-      <label> <input type="radio" name="radio"><span>
-          <Fire /> Do Momento
-        </span></label>
+      <label> <input type="radio" name="radio"><span><Fire /> Do Momento</span></label>
     </div>
     <div>
-      <button name="radio"><a href="/criarPub"><span> Nova Publicação</span></a></button>
-
+      <button class="botao-criar" name="radio"><a href="/criarPub">Nova Publicação</a></button>
     </div>
   </div>
   <div class="post-container">
@@ -30,7 +26,6 @@
               <Verify /><span class="tooltip-text">Publicação Verificada!</span>
             </span>
             <span v-else> </span>
-
           </h4>
           <p>{{ publicacao.texto }}</p>
         </div>
@@ -43,7 +38,6 @@
   </div>
 </template>
 
-<!-- iniciando componentes de icones -->
 <script>
 import ArrowUp from '@/components/icons/arrow-up.vue';
 import Clock from '@/components/icons/clock.vue';
@@ -65,11 +59,10 @@ export default {
     };
   },
 
-  // Chamando o EndPoint do Back e armazenando em publicacoes
   async mounted() {
     try {
-      const response = await artigoServices.getPublicacoes(); // Usando o serviço para fazer a requisição
-      this.publicacoes = response.data; // Armazenando os dados no data
+      const response = await artigoServices.getPublicacoes(); 
+      this.publicacoes = response.data; 
     } catch (error) {
       console.error('Erro ao buscar dados:', error);
     }

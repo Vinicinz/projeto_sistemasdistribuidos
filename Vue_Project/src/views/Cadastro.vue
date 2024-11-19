@@ -1,42 +1,44 @@
 <template>
-  <div class="cadastro-container">
-    <h1>Cadastro de Usuário</h1>
-    <form @submit.prevent="submitForm">
-      <div class="form-group">
-        <label for="nome">Usuário</label>
-        <input type="text" id="nome" v-model="login" required />
-      </div>
+  <div class="container-container">
+    <div class="cadastro-container">
+      <h2>Cadastro de Usuário</h2>
+      <form @submit.prevent="submitForm">
+        <div>
+          <label for="nome">Usuário</label>
+          <input type="text" id="nome" v-model="login" required placeholder="Digite seu nome de usuário" />
+        </div>
 
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" id="email" v-model="email" required />
-      </div>
+        <div>
+          <label for="email">Email</label>
+          <input type="email" id="email" v-model="email" required placeholder="Digite seu email" />
+        </div>
 
-      <div>
-        <label for="password">Senha</label>
-        <input type="password" id="password" v-model= "password" required placeholder="Digite sua senha"/>
-      </div>
+        <div>
+          <label for="password">Senha</label>
+          <input type="password" id="password" v-model="password" required placeholder="Digite sua senha" />
+        </div>
 
-      <button @click="cadastrar">Cadastrar</button>
-    </form>
+        <button @click="cadastrar">Cadastrar</button>
+      </form>
+    </div>
   </div>
 </template>
 
 <script>
 import cadastroServices from '../../services/cadastro.services';
 
-  export default {
-    data() {
-      return {
-        
-          login: "",
-          email: "",
-          password: "",
-          role: 1
-        
-      };
-    },
-    methods: {
+export default {
+  data() {
+    return {
+
+      login: "",
+      email: "",
+      password: "",
+      role: 1
+
+    };
+  },
+  methods: {
     //   formatCPF() {
     //     let cpf = this.form.cpf.replace(/\D/g, "").slice(0, 11);
     //     cpf = cpf.replace(/(\d{3})(\d)/, "$1.$2");
@@ -89,109 +91,134 @@ import cadastroServices from '../../services/cadastro.services';
     //       return;
     //     }
 
-async cadastrar () {
-    try {
-  const response = await cadastroServices.cadastro(this.email, this.login, this.password, this.role);
-  console.log(response.data);
-  alert("Cadastro realizado com sucesso!");
+    async cadastrar() {
+      try {
+        const response = await cadastroServices.cadastro(this.email, this.login, this.password, this.role);
+        console.log(response.data);
+        alert("Cadastro realizado com sucesso!");
 
-  // Redireciona para a página de login
-  this.$router.push("/login");
-} catch (error) {
-  console.error("Erro ao cadastrar:", error.response || error);
-  alert("Erro ao realizar o cadastro. Tente novamente.");
-} finally {
-  this.loading = false;
-}
+        this.$router.push("/login");
+      } catch (error) {
+        console.error("Erro ao cadastrar:", error.response || error);
+        alert("Erro ao realizar o cadastro. Tente novamente.");
+      } finally {
+        this.loading = false;
       }
     }
-  };
+  }
+};
 </script>
 
 <style scoped>
+body {
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(to bottom right, #dcd9d9, #dedede);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}
+
+.container-container{
+  display: flex;
+  justify-content: center;
+}
 .cadastro-container {
-  max-width: 400px;
-  margin: 0 auto;
-  padding: 40px 30px;
-  border-radius: 12px;
-  background: rgba(71, 2, 182, 0.1);
-  backdrop-filter: blur(10px);
-  box-shadow: 0px 4px 12px rgba(15, 5, 75, 0.2);
+  width: 400px;
+  padding: 40px;
+  background: rgba(204, 204, 204, 0.95);
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(8px);
   text-align: center;
-  color: #6f05fa;
+  color: #8b0909;
+  border: 1px solid #e3e3e3;
 }
 
-.profile-icon {
-  border-radius: 50%;
-  width: 80px;
-  height: 80px;
-  background: rgba(42, 5, 248, 0.2);
-  padding: 10px;
-  margin: 0 auto 20px;
+.cadastro-container h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #b71c1c;
 }
 
-.profile-icon img {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
+.cadastro-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
-label {
+.cadastro-container label {
   display: block;
   text-align: left;
+  font-size: 1rem;
+  color: #b71c1c;
   margin-bottom: 5px;
-  color: rgba(0, 4, 255, 0.8);
-  font-size: 0.9rem;
 }
 
-input {
+.cadastro-container input {
   width: 100%;
-  padding: 10px;
-  margin-bottom: 15px;
-  border: none;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-  background: transparent;
+  padding: 12px;
+  border: 1px solid #8b0909;
+  border-radius: 8px;
+  background-color: rgba(236, 236, 236, 0.7);
   color: #000000;
-  font-size: 0.95rem;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
 }
 
-input::placeholder {
-  color: rgba(80, 46, 172, 0.7);
+.cadastro-container input:focus {
+  border-color: #000000;
+  background-color: rgba(254, 254, 254, 0.9);
 }
 
-button {
-  width: 100%;
-  padding: 10px;
-  background-color: #8a5fd1;
-  color: #333;
-  border: none;
-  border-radius: 20px;
-  font-weight: bold;
-  cursor: pointer;
-  margin-top: 10px;
-}
-
-button:hover {
-  background-color: rgba(204, 156, 231, 0.9);
-}
-
-.register {
-  margin-top: 20px;
-}
-
-.register a {
-  color: rgba(161, 125, 230, 0.9);
+.cadastro-container input::placeholder {
+  color: rgba(118, 118, 118, 0.7);
   font-size: 0.9rem;
-  font-weight: bold;
-  text-decoration: none;
 }
 
-.register a:hover {
-  text-decoration: underline;
+.cadastro-container button {
+  width: 100%;
+  padding: 12px;
+  background-color: #8b0909;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.cadastro-container button:hover {
+  background-color: #b71c1c;
+  transform: translateY(-2px);
+}
+
+.cadastro-container button:active {
+  transform: translateY(0);
 }
 
 .error {
-  color: red;
+  color: #d32f2f;
+  font-size: 0.9rem;
   margin-top: 10px;
+}
+
+@media (max-width: 480px) {
+  .cadastro-container {
+    width: 90%;
+    padding: 30px;
+  }
+
+  .cadastro-container h2 {
+    font-size: 1.8rem;
+  }
+
+  .cadastro-container input {
+    font-size: 0.9rem;
+  }
 }
 </style>

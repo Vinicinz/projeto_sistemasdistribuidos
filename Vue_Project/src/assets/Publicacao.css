@@ -3,9 +3,10 @@
     border-color: #d82b2b;
     box-shadow: 0 0 0 4px #b5c9fc;
 }
-.mydict{
+
+.mydict {
     display: flex;
-    justify-content: space-between ;
+    justify-content: space-between;
 }
 
 
@@ -53,6 +54,21 @@ label:first-child span {
 label:last-child span {
     border-radius: 0 .375em .375em 0;
 }
+
+.botao-criar {
+    background-color: #8b0909;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 1em;
+    border: none;
+    cursor: pointer;
+}
+.botao-criar a{
+    text-decoration: none;
+    color: inherit; /* Define a cor do link para herdar a cor do botão */
+    display: block; /* Faz o link ocupar toda a área do botão */}
 
 .post {
     background-color: #fff;
@@ -102,6 +118,7 @@ label:last-child span {
 .post-content p {
     color: #333;
     font-size: 14px;
+    text-align: justify;
 
 }
 
@@ -109,6 +126,7 @@ label:last-child span {
     text-decoration: none;
     color: inherit;
 }
+
 .tooltip-container {
     position: relative;
     display: inline-block;
@@ -145,3 +163,7 @@ label:last-child span {
     font-size: 14px;
 }
 
+.coment-content{
+    display: flex;
+    margin-top: 1rem;
+}

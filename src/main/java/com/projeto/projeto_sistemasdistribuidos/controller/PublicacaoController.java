@@ -35,6 +35,23 @@ public class PublicacaoController {
         }
     }
 
+    @GetMapping("/usuario/{usuarioId}")
+    public ResponseEntity<List<Publicacao>> buscarPublicacoesPorUsuario(@PathVariable Integer usuarioId) {
+        return ResponseEntity.ok(service.buscarPublicacoesPorUsuario(usuarioId));
+    }
+
+    @GetMapping("/categoria/{categoriaId}")
+    public ResponseEntity<List<Publicacao>> buscarPublicacoesPorCategoria(@PathVariable Integer categoriaId ) {
+        List<Publicacao> publicacoes = service.listarPorCategoria(categoriaId);
+        return ResponseEntity.ok(publicacoes);
+    }
+    @GetMapping("/novo")
+    public ResponseEntity<List<Publicacao>> buscarPublicacoesData() {
+        List<Publicacao> publicacoes = service.listarPorData();
+        return ResponseEntity.ok(publicacoes);
+    }
+
+
     @PostMapping
     public ResponseEntity<Publicacao> criarPublicacao(@RequestBody Publicacao publicacao) {
         return ResponseEntity.status(201).body(service.criarPublicacao(publicacao));
