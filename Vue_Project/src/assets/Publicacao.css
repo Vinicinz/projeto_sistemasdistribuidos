@@ -118,6 +118,7 @@ label:last-child span {
 .post-content p {
     color: #333;
     font-size: 14px;
+    text-align: justify;
 
 }
 
@@ -160,4 +161,9 @@ label:last-child span {
     justify-content: space-between;
     color: gray;
     font-size: 14px;
+}
+
+.coment-content{
+    display: flex;
+    margin-top: 1rem;
 }

@@ -29,7 +29,6 @@
               <Verify /><span class="tooltip-text">Publicação Verificada!</span>
             </span>
             <span v-else> </span>
-
           </h4>
           <p>{{ publicacao.texto }}</p>
         </div>

@@ -118,6 +118,7 @@ h1 {
 }
 
 button {
+  margin: 1rem;
   background-color: #8b0909;
   color: white;
   padding: 10px 20px;

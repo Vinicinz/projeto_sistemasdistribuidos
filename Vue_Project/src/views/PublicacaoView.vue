@@ -1,8 +1,4 @@
-<!-- esse cara ainda esta uma bagunça, mas vamos ajeitar e vai dar tudo certo! -->
-
-
 <template>
-  <!-- Template inicial de uma publicação exibindo o titulo, o conteudo e os comentarios  -->
   <div class="post">
     <div class="post-header">
       <img src="https://via.placeholder.com/40" alt="User Profile">
@@ -11,6 +7,7 @@
         <span class="time"> {{ new Date(publicacao.dataPublicacao).toLocaleDateString() }}</span>
       </div>
     </div>
+
     <div class="post-content">
       <h2>{{ publicacao.titulo }}
         <span class="tooltip-container" v-if="publicacao.verificacao === true">
@@ -18,33 +15,35 @@
         </span>
         <span v-else> </span>
       </h2>
+      <p>{{ publicacao.texto }}</p>
     </div>
-    <p>{{ publicacao.texto }}</p>
-    <h3>Comentários</h3>
-
-    <!-- Loop pra chamar os comentarios -->
-    <ul>
-      <li v-for="comentario in comentarios" :key="comentario.id">
-        {{ comentario.desc }} - <strong>{{ comentario.usuario.login }}</strong>
-      </li>
-    </ul>
-
-
-    <div>
-      <div v-if="isAuthenticated">
-        <h3>Adicionar Comentário</h3>
-        <form @submit.prevent="enviarComentario">
-          <QuillEditor v-model="novoComentario.desc" ref="editor" theme="snow" @text-change="onEditorChange" />
-          <button type="submit">Enviar</button>
-        </form>
-      </div>
-      <div v-else><router-link to="/login">Faça login para comentar</router-link></div>
-    </div>
-
-    <!-- Adicionando comentarios (Rever essa parte ainda) -->
-
   </div>
 
+
+
+  <div>
+    <h3>Comentários</h3>
+    <div class="post" v-for="comentario in comentarios" :key="comentario.id">
+      <div class="post-header">
+        <img src="https://via.placeholder.com/40" alt="User Profile">
+        <div class="user-info"><span class="username"> {{ comentario.usuario ? comentario.usuario.login : 'Usuário' }} </span></div>
+      </div>
+      <div class="coment-content">{{ comentario.desc }}</div>
+    </div>
+  </div>
+
+  <div class="post">
+    <div v-if="isAuthenticated">
+      <h3>Adicionar Comentário</h3>
+      <form @submit.prevent="enviarComentario">
+        <QuillEditor v-model="novoComentario.desc" ref="editor" theme="snow" @text-change="onEditorChange" />
+        <hr>
+
+        <button class="botao-criar" type="submit">Enviar</button>
+      </form>
+    </div>
+    <div v-else><router-link to="/login">Faça login para comentar</router-link></div>
+  </div>
 </template>
 
 <script>
