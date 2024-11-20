@@ -1,5 +1,6 @@
 package com.projeto.projeto_sistemasdistribuidos.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -17,15 +18,18 @@ public class Usuario implements UserDetails {
     @Column(name = "USU_INT_ID")
     private Integer id;
 
+    @JsonIgnore
     @Column (name ="USU_STR_EMAIL")
     private String email ;
 
+    @JsonIgnore
     @Column (name = "USU_STR_SENHA")
     private String password;
 
     @Column (name = "USU_STR_NICK")
     private String login;
 
+    @JsonIgnore
     @Column (name = "PER_INT_ID")
     private Integer role;
 
@@ -81,6 +85,7 @@ public class Usuario implements UserDetails {
         this.role = role;
     }
 
+    @JsonIgnore
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         if (this.role == 1) {
@@ -90,26 +95,31 @@ public class Usuario implements UserDetails {
         }
     }
 
+    @JsonIgnore
     @Override
     public String getUsername() {
         return email;
     }
 
+    @JsonIgnore
     @Override
     public boolean isAccountNonExpired() {
         return true;
     }
 
+    @JsonIgnore
     @Override
     public boolean isAccountNonLocked() {
         return true;
     }
 
+    @JsonIgnore
     @Override
     public boolean isCredentialsNonExpired() {
         return true;
     }
 
+    @JsonIgnore
     @Override
     public boolean isEnabled() {
         return true;
