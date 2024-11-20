@@ -3,7 +3,11 @@ package com.projeto.projeto_sistemasdistribuidos.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "avaliacao")
+@Table(
+        name = "avaliacao",
+        uniqueConstraints = @UniqueConstraint(columnNames = {"USU_INT_ID", "PUB_INT_ID"})
+)
+
 public class Avaliacao{
 
     @Id
@@ -19,8 +23,8 @@ public class Avaliacao{
     private Usuario usuario;
 
     @ManyToOne
-    @JoinColumn (name = "COM_INT_ID", referencedColumnName = "COM_INT_ID")
-    private Comentario comentario;
+    @JoinColumn (name = "PUB_INT_ID", referencedColumnName = "PUB_INT_ID")
+    private Publicacao publicacao;
 
     public int getId(){
         return id;
@@ -46,11 +50,11 @@ public class Avaliacao{
         this.usuario = usuario;
     }
 
-    public Comentario getComentario() {
-        return comentario;
+    public Publicacao getPublicacao() {
+        return publicacao;
     }
 
-    public void setComentario(Comentario comentario) {
-        this.comentario = comentario;
+    public void setPublicacao(Publicacao publicacao) {
+        this.publicacao = publicacao;
     }
 }
