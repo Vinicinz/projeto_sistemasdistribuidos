@@ -43,7 +43,7 @@ import ArrowUp from '@/components/icons/arrow-up.vue';
 import Clock from '@/components/icons/clock.vue';
 import Fire from '@/components/icons/fire.vue';
 import Verify from '@/components/icons/verify.vue';
-import artigoServices from '../../services/artigo.services';
+import PublicacaoService from '../../services/PublicacaoService';
 
 export default {
   components: {
@@ -61,7 +61,7 @@ export default {
 
   async mounted() {
     try {
-      const response = await artigoServices.getPublicacoes(); 
+      const response = await PublicacaoService.getPublicacoes(); 
       this.publicacoes = response.data; 
     } catch (error) {
       console.error('Erro ao buscar dados:', error);
