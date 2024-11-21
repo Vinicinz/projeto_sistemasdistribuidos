@@ -162,6 +162,14 @@ label:last-child span {
     color: gray;
     font-size: 14px;
 }
+.post-footer-numbers{
+    display: flex;
+}
+.post-footer-numbers span{
+    padding-left: 2px;
+    padding-right: 2px;
+}
+
 
 .coment-content{
     display: flex;
