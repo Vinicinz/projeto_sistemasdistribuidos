@@ -22,6 +22,11 @@ public class AvaliacaoService {
         return listar;
     }
 
+    public Integer contarAvaliacoesPorPublicacaoId(Integer publicacaoId){
+        return repository.countByPublicacaoId(publicacaoId);
+
+    }
+
     public void toggleAvaliacao(Avaliacao avaliacao) {
         Optional<Avaliacao> avaliacaoExistente = repository.findByUsuarioAndPublicacao(avaliacao.getUsuario(), avaliacao.getPublicacao());
 

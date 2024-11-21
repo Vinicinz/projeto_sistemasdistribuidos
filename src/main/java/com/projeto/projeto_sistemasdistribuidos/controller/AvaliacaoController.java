@@ -46,6 +46,12 @@ public class AvaliacaoController {
         return ResponseEntity.ok("Operação realizada com sucesso!");
     }
 
+    @GetMapping("/count")
+    public ResponseEntity <Integer> contarAvaliacoesPorPublicacao(@RequestParam Integer publicacaoId) {
+        Integer total = service.contarAvaliacoesPorPublicacaoId(publicacaoId);
+        return ResponseEntity.ok(total);
+    }
+
     @PutMapping
     public ResponseEntity<Avaliacao> editarAvaliacao(@RequestBody Avaliacao avaliacao){
         return ResponseEntity.status(200).body(service.editarAvaliacao(avaliacao));
