@@ -5,7 +5,7 @@
     <!-- Foto de perfil e login -->
     <div class="foto-perfil" v-if="login">
       <img :src="login.profilePicture || 'https://via.placeholder.com/120'" alt="Foto de perfil" />
-      <h2>{{ login ? login.login : 'usuário' }}</h2> <!-- Exibe o login do usuário -->
+      <h2>{{ login ? login.login : 'usuário' }}</h2>
     </div>
 
     <hr class="divisao" />
@@ -14,13 +14,15 @@
     <!-- Lista de publicações -->
     <div class="meus-posts">
       <h2>Minhas Publicações</h2>
-      <div v-if="pub.length">
-        <div v-for="post in pub" :key="post.id" class="post">
-          <h3>{{ post.title }}</h3>
-          <p>{{ post.content }}</p>
-          <div class="interacoes">
-            <span>Publicado em: {{ formatarData(post.date) }}</span>
-          </div>
+      <div v-if="publicacao.length">
+        <div v-for="publicacao in publicacao" :key="publicacao.id" class="post">
+          <router-link :to="`/publicacao/${publicacao.id}`">
+            <h3>{{ publicacao.titulo }}</h3>
+            <p>{{ publicacao.texto }}</p>
+            <div class="interacoes">
+              <span>Publicado em: {{ formatarData(publicacao.dataPublicacao) }}</span>
+            </div>
+          </router-link>
         </div>
       </div>
       <p v-else>Você ainda não possui publicações.</p>
@@ -44,7 +46,7 @@ export default {
     return {
       login: null,
       userId: localStorage.getItem("userId") || "",
-      pub: [],
+      publicacao: {},
     };
   },
   computed: {
@@ -55,6 +57,14 @@ export default {
 
   async mounted() {
     this.carregarPerfil();
+    const userId = this.userId;
+    try {
+      const publicacaoResponse = await PublicacaoService.getPublicacaoUsuario(userId);
+      this.publicacao = publicacaoResponse.data;
+    } catch (error) {
+      console.error('Erro ao buscar dados:', error);
+    }
+
   },
 
   methods: {
@@ -71,7 +81,7 @@ export default {
       try {
         const response = await loginServices.buscaLogin(this.userId);
         console.log("Dados do usuário:", response.data);
-        this.login = response.data; 
+        this.login = response.data;
       } catch (error) {
         console.error("Erro ao carregar o perfil:", error);
         alert("Erro ao carregar os dados do perfil.");
@@ -169,6 +179,7 @@ button {
   margin-bottom: 20px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  text-align: justify;
 }
 
 .post:hover {
