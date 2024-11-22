@@ -36,7 +36,7 @@
       </router-link>
       <div class="post-footer">
         <div>
-          <span>Gostei</span>
+          <button class="gostei-btn" @click="toggleAvaliacao(publicacao.id)">Gostei</button>
         </div>
         <div class="post-footer-numbers">
           <span>{{ totalAvaliacoes[publicacao.id] || 0 }} </span>
@@ -62,7 +62,6 @@ import comentarioIcone from '@/components/icons/comentario-icone.vue';
 import arrowComent from '@/components/icons/arrow-coment.vue';
 import PublicacaoService from '../../services/PublicacaoService';
 import AvaliacaoServices from '../../services/AvaliacaoServices';
-
 import ComentarioIcone from '@/components/icons/comentario-icone.vue';
 import ArrowComent from '@/components/icons/arrow-coment.vue';
 
@@ -100,7 +99,7 @@ export default {
     async buscarTotalAvaliacoes(publicacaoId) {
       try {
         const responseAvaliacao = await AvaliacaoServices.getAvaliacao(publicacaoId);
-        const total = responseAvaliacao.data; 
+        const total = responseAvaliacao.data;
         this.totalAvaliacoes = {
           ...this.totalAvaliacoes,
           [publicacaoId]: total
@@ -108,7 +107,27 @@ export default {
       } catch (error) {
         console.error("Erro na requisição:", error);
       }
-    }
+    },
+    async toggleAvaliacao(publicacaoId) {
+      const userId = localStorage.getItem('userId');
+      const avaliacaoTogle = {
+        id: "",
+        react: 1,
+        usuario: {
+          id: userId,
+        },
+        publicacao: {
+          id: publicacaoId
+        }
+      };
+      try {
+        await AvaliacaoServices.postAvaliacao(avaliacaoTogle);
+        await new Promise(resolve => setTimeout(resolve, 200)); // Aguarda 200ms
+        await this.buscarTotalAvaliacoes(publicacaoId);
+      } catch (error) {
+        console.error("Erro ao curtir/descurtir publicação:", error);
+      }
+    },
   },
 };
 </script>
