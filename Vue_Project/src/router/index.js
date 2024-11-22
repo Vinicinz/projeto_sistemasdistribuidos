@@ -6,6 +6,7 @@ import ForumView from '@/views/ForumView.vue'
 import Cadastro from '@/views/Cadastro.vue'
 import CriarPostagemView from '@/views/CriarPostagemView.vue'
 import MeuPerfil from '@/views/MeuPerfil.vue'
+import VueQuillEditorComponent from '@/views/VueQuillEditorComponent.vue'
 
 
 // Rotas chamando o componente especifico de cada um.
@@ -53,6 +54,12 @@ const router = createRouter({
       path: '/user',
       name: 'user',
       component: MeuPerfil
+    },
+
+    {
+      path: '/vuequill',
+      name: 'vuequill',
+      component: VueQuillEditorComponent
     }
 
   ]

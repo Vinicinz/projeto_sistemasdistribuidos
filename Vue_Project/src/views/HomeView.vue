@@ -36,11 +36,21 @@
         </div>
         <div class="post-footer">
           <span>Gostei | Comentar </span>
+          <button 
+        @click="CurtireDescurtir" 
+        :class="{ 'curtido': curtido }"
+        class="botao-curtir"
+        :disabled="carregando"
+      >
+        {{ curtido ? 'Descurtir' : 'Curtir' }}
+      </button>
+      <span>{{ curtidas }} {{ curtidas === 1 ? 'curtida' : 'curtidas' }}</span>
+    </div>
           <span> 0 </span>
-        </div>
       </router-link>
     </div>
   </div>
+
 </template>
 
 <!-- iniciando componentes de icones -->
@@ -52,6 +62,21 @@ import Verify from '@/components/icons/verify.vue';
 import artigoServices from '../../services/artigo.services';
 
 export default {
+  name: "BotaoCurtir",
+    props: {
+      idPublicacao: {
+        type: Number,
+        required: true,
+      },
+      curtidas: {
+        type: Number,
+        required: true,
+      },
+      usuarioCurtiu: {
+        type: Boolean,
+        required: true,
+      },
+    },
   components: {
     Clock,
     ArrowUp,
@@ -62,7 +87,10 @@ export default {
   data() {
     return {
       publicacoes: [],
-    };
+        curtido: this.usuarioCurtiu, // Estado inicial de curtido
+        curtidas: this.curtidasIniciais, // Número inicial de curtidas
+        carregando: false, // Indica se está processando
+      };
   },
 
   // Chamando o EndPoint do Back e armazenando em publicacoes
@@ -76,3 +104,41 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+button[name="radio"] {
+  background-color: #8b0909; /* Cor azul primária */
+  border: none; /* Remove borda padrão */
+  border-radius: 5px; /* Bordas arredondadas */
+  padding: 10px 20px; /* Espaçamento interno */
+  color: #fff; /* Texto branco */
+  font-size: 1rem; /* Tamanho do texto */
+  cursor: pointer; /* Cursor de clique */
+  display: inline-flex; /* Para alinhar com o link */
+  align-items: center; /* Centraliza verticalmente */
+  justify-content: center; /* Centraliza horizontalmente */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+  transition: all 0.3s ease; /* Transição suave para hover */
+}
+
+button[name="radio"]:hover {
+  background-color: #8b0909; /* Cor azul escuro no hover */
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); /* Aumenta a sombra */
+  transform: translateY(-2px); /* Efeito de leve elevação */
+}
+
+button[name="radio"] a {
+  text-decoration: none; /* Remove sublinhado do link */
+  color: #fff; /* Garante que o texto do link seja branco */
+  font-weight: bold; /* Texto em negrito */
+}
+
+button[name="radio"]:hover a {
+  color: #e0e0e0; /* Texto mais claro no hover */
+}
+
+button[name="radio"] span {
+  margin-left: 5px; /* Espaço entre ícones e texto */
+}
+
+</style>
