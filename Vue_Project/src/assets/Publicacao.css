@@ -65,10 +65,14 @@ label:last-child span {
     border: none;
     cursor: pointer;
 }
-.botao-criar a{
+
+.botao-criar a {
     text-decoration: none;
-    color: inherit; /* Define a cor do link para herdar a cor do botão */
-    display: block; /* Faz o link ocupar toda a área do botão */}
+    color: inherit;
+    /* Define a cor do link para herdar a cor do botão */
+    display: block;
+    /* Faz o link ocupar toda a área do botão */
+}
 
 .post {
     background-color: #fff;
@@ -159,11 +163,40 @@ label:last-child span {
 .post-footer {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     color: gray;
     font-size: 14px;
 }
 
-.coment-content{
+.post-footer-numbers {
+    display: flex;
+}
+
+.post-footer-numbers span {
+    padding-left: 2px;
+    padding-right: 2px;
+}
+
+.gostei-btn {
+    background-color: #8b0909;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.gostei-btn:hover {
+    transform: scale(1.05);
+}
+
+.gostei-btn:active {
+    transform: scale(0.95);
+}
+
+.coment-content {
     display: flex;
     margin-top: 1rem;
 }
