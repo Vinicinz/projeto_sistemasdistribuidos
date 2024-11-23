@@ -19,6 +19,10 @@ public class ComentarioService {
         return lista;
     }
 
+    public Integer contarAvaliacoesPorPublicacaoId(Integer publicacaoId){
+        return repository.countByPublicacaoId(publicacaoId);
+
+    }
     public Comentario criarComentario(Comentario comentario){
         Comentario novoComentario = repository.save(comentario);
         return novoComentario;
