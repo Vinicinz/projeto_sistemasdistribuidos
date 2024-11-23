@@ -1,8 +1,8 @@
-import axios from 'axios'
+import api from './api';
 
 class CadastroServices {
   cadastro ( email, login, password, role ) {
-    return axios.post(`http://localhost:8080/auth/register`, {
+    return api.post(`/auth/register`, {
         login: login,
         email: email,
         password: password,

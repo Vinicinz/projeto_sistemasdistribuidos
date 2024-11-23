@@ -1,12 +1,12 @@
-import axios from 'axios'
+import api from './api';
 
 class AvaliacaoService {
     getAvaliacao(publicacaoId) {
-        return axios.get(`http://localhost:8080/avaliacao/count?publicacaoId=${publicacaoId}`);
+        return api.get(`/avaliacao/count?publicacaoId=${publicacaoId}`);
     }
     postAvaliacao(avaliacaoTogle) {
         try {
-            const response = axios.post(`http://localhost:8080/avaliacao/toggle`, avaliacaoTogle);
+            const response = api.post(`/avaliacao/toggle`, avaliacaoTogle);
             return response.data;
         } catch (error) {
             console.error('Erro ao curtir/descurtir publicacao:', error);

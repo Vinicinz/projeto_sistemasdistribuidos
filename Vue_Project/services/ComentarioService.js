@@ -1,18 +1,17 @@
-import axios from "axios";
+import api from './api';
 
 class ComentarioService {
-
     getComentarioCount(publicacaoId) {
-        return axios.get(`http://localhost:8080/comentario/count?publicacaoId=${publicacaoId}`);
+        return api.get(`/comentario/count?publicacaoId=${publicacaoId}`);
     }
 
     getComentarios(idPublicacao) {
-        return axios.get(`http://localhost:8080/comentario/${idPublicacao}`);
+        return api.get(`/comentario/${idPublicacao}`);
     }
 
-    enviarComentario(comentarioPayload) {
+    async enviarComentario(comentarioPayload) {
         try {
-            const response = axios.post(`http://localhost:8080/comentario`, comentarioPayload);
+            const response = await api.post('/comentario', comentarioPayload);
             return response.data;
         } catch (error) {
             console.error('Erro ao criar comentario:', error);
@@ -20,6 +19,5 @@ class ComentarioService {
         }
     }
 }
-
 
 export default new ComentarioService();

@@ -1,10 +1,10 @@
-import axios from 'axios';
+import api from './api';
 
 class PublicacaoService {
   
   async criarPublicacao(publicacao) {
     try {
-      const response = await axios.post('http://localhost:8080/publicacao', publicacao);
+      const response = await api.post('/publicacao', publicacao);
       return response.data; // Retorna os dados da publicação criada
     } catch (error) {
       console.error('Erro ao criar publicação:', error);
@@ -13,16 +13,16 @@ class PublicacaoService {
   }
 
   getPublicacaoUnica(idPublicacao) {
-    return axios.get(`http://localhost:8080/publicacao/${idPublicacao}`);
+    return api.get(`publicacao/${idPublicacao}`);
   }
 
   getPublicacoes() {
-    return axios.get(`http://localhost:8080/publicacao`);
+    return api.get(`/publicacao`);
   }
 
 
   getPublicacaoUsuario(userId){
-    return axios.get(`http://localhost:8080/publicacao/usuario/${userId}`, userId)
+    return api.get(`/publicacao/usuario/${userId}`, userId)
   }
   
 }

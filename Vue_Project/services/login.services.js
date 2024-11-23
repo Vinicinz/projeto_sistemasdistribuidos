@@ -1,14 +1,14 @@
-import axios from 'axios'
+import api from './api';
 
 class LoginService {
   login ( email, password ) {
-    return axios.post(`http://localhost:8080/auth/login`, {
+    return api.post(`/auth/login`, {
       email: email,
       password: password
     });
   }
   buscaLogin(userId){
-    return axios.get(`http://localhost:8080/usuario/${userId}`, userId)
+    return api.get(`/usuario/${userId}`, userId)
   }
 }
 export default new LoginService()
