@@ -43,7 +43,9 @@
           <span>
             <ArrowComent />
           </span>
-          <span> 5 </span>
+
+          
+          <span>{{ totalComentarios[publicacao.id] || 0 }} </span>
           <span>
             <ComentarioIcone />
           </span>
@@ -64,6 +66,7 @@ import PublicacaoService from '../../services/PublicacaoService';
 import AvaliacaoServices from '../../services/AvaliacaoServices';
 import ComentarioIcone from '@/components/icons/comentario-icone.vue';
 import ArrowComent from '@/components/icons/arrow-coment.vue';
+import ComentarioService from '../../services/ComentarioService';
 
 export default {
   components: {
@@ -78,7 +81,8 @@ export default {
   data() {
     return {
       publicacoes: [],
-      totalAvaliacoes: {}
+      totalAvaliacoes: {},
+      totalComentarios: {}
     };
   },
 
@@ -90,6 +94,9 @@ export default {
       // Para cada publicação, busca o total de avaliações
       this.publicacoes.forEach(publicacao => {
         this.buscarTotalAvaliacoes(publicacao.id);
+      });
+      this.publicacoes.forEach(publicacao => {
+        this.buscarTotalComentario(publicacao.id);
       });
     } catch (error) {
       console.error("Erro ao buscar dados:", error);
@@ -106,6 +113,19 @@ export default {
         };
       } catch (error) {
         console.error("Erro na requisição:", error);
+      }
+    },
+    async buscarTotalComentario(publicacaoId){
+      try{
+        const responseComentario = await ComentarioService.getComentarioCount(publicacaoId);
+        const totalcom = responseComentario.data;
+        this.totalComentarios = {
+          ...this.totalComentarios,
+          [publicacaoId]: totalcom
+        };
+
+      }catch (error) {
+        console.error("Erro na requisição: ", error);
       }
     },
     async toggleAvaliacao(publicacaoId) {
