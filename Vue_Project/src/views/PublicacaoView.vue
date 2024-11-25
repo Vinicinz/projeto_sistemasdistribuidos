@@ -52,6 +52,7 @@ import { QuillEditor } from '@vueup/vue-quill'
 import '@vueup/vue-quill/dist/vue-quill.snow.css';
 import PublicacaoService from '../../services/PublicacaoService';
 import { isAuthenticated } from '@/router/auth';
+import ComentarioService from '../../services/ComentarioService';
 
 export default {
   components: {
@@ -88,7 +89,7 @@ export default {
       this.publicacao = publicacaoResponse.data;
 
       // Buscar comentários pelo ID da publicação
-      const comentariosResponse = await PublicacaoService.getComentarios(publicacaoId);
+      const comentariosResponse = await ComentarioService.getComentarios(publicacaoId);
       this.comentarios = comentariosResponse.data;
     } catch (error) {
       console.error('Erro ao buscar dados:', error);
@@ -108,7 +109,7 @@ export default {
         this.novoComentario.usuario.id = userId;
         this.novoComentario.publicacao.id = publicacaoId;
 
-        const response = await PublicacaoService.enviarComentario(this.novoComentario);
+        const response = await ComentarioService.enviarComentario(this.novoComentario);
         window.location.reload();
 
 

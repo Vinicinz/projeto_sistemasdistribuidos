@@ -27,6 +27,11 @@ public class ComentarioController {
         return ResponseEntity.status(200).body(service.buscarComentarioPorId(publicacaoId));
 
     }
+    @GetMapping("/count")
+    public ResponseEntity <Integer> contarComentariosPorPublicacao(@RequestParam Integer publicacaoId) {
+        Integer total = service.contarAvaliacoesPorPublicacaoId(publicacaoId);
+        return ResponseEntity.ok(total);
+    }
 
     @PostMapping
     public ResponseEntity<Comentario> criarComentario(@RequestBody Comentario comentario){
